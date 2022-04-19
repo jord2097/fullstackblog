@@ -12,11 +12,11 @@ const uri = "mongodb+srv://jord2097:97f514dVaZWLrF0J8gqs@cluster0.thipn.mongodb.
 mongoose.connect(uri)
 
 const app = express()
-app.use(router)
 app.use(helmet())
 app.use(bodyParser.json())
 app.use(cors())
 app.use(morgan('combined'))
+app.use(router)
 
 
 app.listen(port, () => {
