@@ -1,4 +1,5 @@
 const express = require('express')
+const router = require('./router')
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -11,10 +12,12 @@ const uri = "mongodb+srv://jord2097:97f514dVaZWLrF0J8gqs@cluster0.thipn.mongodb.
 mongoose.connect(uri)
 
 const app = express()
+app.use(router)
 app.use(helmet())
 app.use(bodyParser.json())
 app.use(cors())
 app.use(morgan('combined'))
+
 
 app.listen(port, () => {
     console.log(`Blog API listening on http://localhost:${port}`)
