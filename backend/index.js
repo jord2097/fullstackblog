@@ -1,4 +1,5 @@
 const express = require('express')
+const router = require('./router')
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -15,6 +16,8 @@ app.use(helmet())
 app.use(bodyParser.json())
 app.use(cors())
 app.use(morgan('combined'))
+app.use(router)
+
 
 app.listen(port, () => {
     console.log(`Blog API listening on http://localhost:${port}`)
