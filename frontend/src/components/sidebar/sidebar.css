@@ -1,0 +1,10 @@
+.sidebar{
+    flex:2;
+}
+img{
+    width: 100%;
+    height: fit-content;
+    margin-left: 3%;
+    margin-right: 2%;
+    
+}
