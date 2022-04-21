@@ -1,10 +1,14 @@
-import React from "react";
-import DisplayAllPosts from './Components/DisplayAllPosts'
-const App = ( ) => {
+
+import React from 'react';
+import Home from "./pages/home/Home";
+import TopBar from "./components/topbar/TopBar";
+function App() {
   return (
-    <div>
-      <DisplayAllPosts />
-    </div>
+    <>
+      <TopBar/>
+      <Home/>
+    </>
+
   );
 };
 export default App;
