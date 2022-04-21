@@ -34,25 +34,24 @@
     margin-top: 15px;
     margin-bottom: 15px;
 }
-.postDesc{
+
+.postDescContainer {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+  .postDesc {
     font-size: 15px;
     color: black;
     line-height: 24px;
     margin-top: 15px;
-   overflow: hidden; 
-   text-overflow: ellipsis;
-   display: -webkit-box;
-   -webkit-line-clamp: 2;
-   -webkit-box-orient: vertical;
-   /* webkit-line-clamp only works in combination with web-kit-box-orient and display:-webkit-box or display: -webkit-inline-box */
-   margin-bottom: 2%;
-   cursor: pointer;
-
-}
-.postDesc:hover{
+    /* webkit-line-clamp only works in combination with web-kit-box-orient and display:-webkit-box or display: -webkit-inline-box */
+    margin-bottom: 2%;
+    cursor: pointer;
+  }
+  .postDescContainer:hover {
     overflow: visible;
-    height: fit-content;
-    
-    
-}
-
+    -webkit-line-clamp: unset;
+  }
