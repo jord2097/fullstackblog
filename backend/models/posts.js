@@ -5,7 +5,9 @@ const postSchema = mongoose.Schema({
     mainText: String,
     img: String,
     category: String,    
-    tags: String
+    tags: String,
+    draft: {type: Boolean, default: false},
+    published: {type: Boolean, default: true}
 })
 
 module.exports.Post = mongoose.model('posts', postSchema, 'posts' )
