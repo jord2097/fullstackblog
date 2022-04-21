@@ -16,7 +16,7 @@ export class apiClient {
         })
     }
 
-    // basic operations
+    // basic post operations
 
     getPosts() {
         return this.apiCall("get", `${url}/posts`)
@@ -32,6 +32,24 @@ export class apiClient {
 
     deletePost(_id) {
         return this.apiCall("delete", `${url}/${_id}`)
+    }
+
+    // basic user operations
+
+    getUsers() {
+        return this.apiCall("get", `${url}/users`)
+    }
+
+    addUser(username, password, displayName, email) {
+        return this.apiCall("post", `${url}/users/create`, { username, password, displayName, email})
+    }
+
+    updateUser(_id, username, password, displayName, email) {
+        return this.apiCall("put", `${url}/users/${_id}`, { username, password, displayName, email })
+    }
+
+    deleteUser(_id) {
+        return this.apiCall("delete", `${url}/users/${_id}`)
     }
 
     // extra features
