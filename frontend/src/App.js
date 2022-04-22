@@ -1,3 +1,5 @@
+
+import React from 'react';
 import Home from "./pages/home/Home";
 import TopBar from "./components/topbar/TopBar";
 function App() {
@@ -6,7 +8,7 @@ function App() {
       <TopBar/>
       <Home/>
     </>
-  );
-}
 
+  );
+};
 export default App;
