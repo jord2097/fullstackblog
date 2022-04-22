@@ -1,5 +1,5 @@
 import axios from 'axios';
-const url = 'http://localhost:3000' // URL for the API server
+const url = 'https://hdj-blog-api.herokuapp.com/' // URL for the API server either local host or https://hdj-blog-api.herokuapp.com/
 
 export class apiClient {
     constructor(token) {
