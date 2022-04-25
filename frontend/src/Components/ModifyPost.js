@@ -1,4 +1,5 @@
 import React from "react";
+
 const ModifyPost = (props) => {
   return (
     <><section className="create-post">

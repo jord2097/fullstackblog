@@ -1,5 +1,5 @@
 import axios from 'axios';
-const url = 'http://localhost:3000' // URL for the API server
+const url = 'https://hdj-blog-api.herokuapp.com' // URL for the API server
 
 export class apiClient {
     constructor(token) {
@@ -23,15 +23,15 @@ export class apiClient {
     }
 
     createPost(title, mainText, img, category, tags, draft, published) {
-        return this.apiCall("post", `${url}/create`, { title, mainText, img, category, tags, draft, published })
+        return this.apiCall("post", `${url}/posts/create`, { title, mainText, img, category, tags, draft, published })
     }
 
     updatePost(_id, title, mainText, img, category, tags, draft, published) {
-        return this.apiCall("put", `${url}/${_id}`, { title, mainText, img, category, tags, draft, published })
+        return this.apiCall("put", `${url}/posts/${_id}`, { title, mainText, img, category, tags, draft, published })
     }
 
     deletePost(_id) {
-        return this.apiCall("delete", `${url}/${_id}`)
+        return this.apiCall("delete", `${url}/posts/${_id}`)
     }
 
     // basic user operations
