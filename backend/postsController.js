@@ -23,7 +23,7 @@ exports.create = function (req,res,next){
     })
 
     post.save()
-        .then( () => res.send({result:true}))
+        .then( () => res.send({message: "Post Created Successfully!"}))
 }
 
 exports.update = function (req,res,next){
@@ -50,7 +50,7 @@ exports.update = function (req,res,next){
         }   
 
         post.save()
-            .then( () => res.send ({result: true}))
+            .then( () => res.send ({message: "Post Updated Successfully!"}))
     })    
 }
 
@@ -63,6 +63,7 @@ exports.delete = function (req,res,next){
             return (next(createError(404, "no post with that id")))
         }
     })
+    res.send({message: "Post Deleted Successfully!"})
 }
 
 // extra operations
@@ -82,6 +83,8 @@ exports.searchTags = async function (req, res, next){
     }
     res.send(tagMatches)
 } // searches for tag within string using regex
+
+// general searchbar function
 
 exports.showDrafts = async function (req, res, next){
     const currentDrafts = await Post.find({draft: true})
