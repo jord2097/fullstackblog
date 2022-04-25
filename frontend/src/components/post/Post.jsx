@@ -22,12 +22,14 @@ export default function Post(props) {
             <button onClick={() => props.deletePost(props.post._id)} >Delete Post</button>
             <hr/>
             {/* hr adds line */}
+
             
             <span className="postDate"> Date Unknown </span>
             <p className='postDesc'>
          {props.post.mainText}
 
             </p>
+
      </div>
      
      

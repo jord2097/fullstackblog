@@ -2,7 +2,8 @@
  flex:10;   
  display:flex;
  flex-wrap: wrap; 
-  justify-content:space-around; 
+ justify-content:space-around; 
+
  /* this above line will make your posts appear side by side is their size can fit the container.
  otherwise they will appear on top of each other */
  margin: 20px;

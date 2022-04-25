@@ -16,11 +16,13 @@ export default function Posts(props) {
 
   return (
     <div className='posts'>
+
         {props.posts.map((post) => (
           <Grid key={post.id} item xs={12} sm={6} md={6}>
             <Post post={post} updatePost={updatePost} deletePost={deletePost}/>
           </Grid>
         ))}      
+
     
     </div>
   )
