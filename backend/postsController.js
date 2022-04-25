@@ -1,6 +1,7 @@
 const createError = require('http-errors')
 const { ObjectId } = require('mongodb')
-const { Post } = require('./models/posts.js')
+const { Post } = require('./models/posts')
+const { User } = require('./models/users')
 
 // CRUD operations
 
@@ -9,17 +10,21 @@ exports.index = async function (req,res){
     .then((posts) => res.send(posts))
 }
 
-exports.create = function (req,res,next){
+exports.create = async function (req,res,next){
     if(!req.body.title || !req.body.mainText){
         return (next(createError(400, "missing title and/or main text")))
     }
+    const postCreator = await User.findOne({token: req.headers.authorization})
+    const creatorID = postCreator._id
+    
 
     const post = new Post({
         title: req.body.title,
         mainText: req.body.mainText,
         img: req.body.img,
         category: req.body.category,
-        tags: req.body.tags
+        tags: req.body.tags,
+        creatorID: creatorID        
     })
 
     post.save()
@@ -58,12 +63,19 @@ exports.delete = function (req,res,next){
     Post.deleteOne({_id: ObjectId(req.params.id)})
     .then( (result) => {
         if (result.deletedCount){
-            res.send({result: true})
+            res.send({message: "Post Deleted Successfully"})
         } else {
             return (next(createError(404, "no post with that id")))
         }
-    })
-    res.send({message: "Post Deleted Successfully!"})
+    })    
+}
+
+exports.deleteAll =  async function (req,res,next){
+    if (req.params.confirm !== "yes") {
+        return res.send({message: `Are you sure you want to delete? Replace ${req.params.confirm} with yes`})
+    }
+    await Post.deleteMany()
+    res.send({message: 'All Events Deleted.'})
 }
 
 // extra operations
