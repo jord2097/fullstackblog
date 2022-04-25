@@ -1,58 +1,52 @@
-.post{
-    width: 385px;
-    margin-top: 0px 20px 40px 25px;
-
+.post {
+  width: 385px;
+  margin-top: 0px 20px 40px 25px;
+  margin-bottom: 40px
 }
-.postImg{
-    width:100%;
-    height: 280px;
-    object-fit:cover;
-    border-radius: 7px;
+.postImg {
+  width: 110%;  
+  object-fit: cover;
+  border-radius: 7px;
 }
-.postInfo{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
+.postInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.postCat{
-    line-height: 20px;
-    color:#be9656;
-    margin-top: 15px;
-    margin-right: 10px;
-
+.postCat {
+  line-height: 20px;
+  color: #be9656;
+  margin-top: 15px;
+  margin-right: 10px;
 }
-.postTitle{
-    font-size: 24px;
-    font-weight: 700;
-    margin-top: 15px;
+.postTitle {
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 15px;
 }
-.postDate{
-    font-style: italic;
-    font-size: 13px;
-    color:#999;
-    margin-top: 15px;
-    margin-bottom: 15px;
+.postDate {
+  font-style: italic;
+  font-size: 13px;
+  color: #999;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
-.postDesc{
-    font-size: 15px;
-    color: black;
-    line-height: 24px;
-    margin-top: 15px;
-   overflow: hidden; 
-   text-overflow: ellipsis;
-   display: -webkit-box;
-   -webkit-line-clamp: 2;
-   -webkit-box-orient: vertical;
-   /* webkit-line-clamp only works in combination with web-kit-box-orient and display:-webkit-box or display: -webkit-inline-box */
-   margin-bottom: 2%;
-   cursor: pointer;
-
+.postDesc {
+  font-size: 15px;
+  width: 400px;
+  color: black;
+  line-height: 24px;
+  margin-top: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  /* webkit-line-clamp only works in combination with web-kit-box-orient and display:-webkit-box or display: -webkit-inline-box */
+  margin-bottom: 2%;
+  cursor: pointer;
 }
-.postDesc:hover{
-    overflow: visible;
-    height: fit-content;
-    
-    
+.postDesc:hover {
+  overflow: visible;
+  -webkit-line-clamp: unset;
 }
-
