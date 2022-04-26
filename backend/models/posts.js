@@ -6,6 +6,7 @@ const postSchema = mongoose.Schema({
     img: String,
     category: String,    
     tags: String,
+    creatorID: String,
     draft: {type: Boolean, default: false},
     published: {type: Boolean, default: true}
 })
