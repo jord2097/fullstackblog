@@ -20,15 +20,6 @@ app.use(morgan('combined'))
 // app.use(setUser)
 app.use(router)
 
-/* function setUser(req, res, next) {
-    const userToken = req.headers.authorization
-    if (userToken) {
-        req.user = User.findOne({token: userToken})
-        console.log(req.user.username)
-    }
-} */
-
-
 app.listen(port, () => {
     console.log(`Blog API listening on http://localhost:${port}`)
 })

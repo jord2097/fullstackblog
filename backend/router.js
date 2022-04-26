@@ -13,6 +13,7 @@ router.delete('/posts/:id', authUser, requiresAdmin, posts.delete)
 router.get('/search/category', posts.searchCategory) // searching is available for all users
 router.get('/search/tags', posts.searchTags)
 router.get('/posts/drafts', authUser, requiresAuthor, posts.showDrafts)
+router.get('posts/unpublished', authUser, requiresAuthor, posts.showUnpublished)
 router.post('/register', users.register)
 router.post('/login', users.login)
 router.delete('/posts/deleteall/:confirm', authUser, requiresAdmin, posts.deleteAll)
