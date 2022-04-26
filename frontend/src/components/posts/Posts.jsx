@@ -18,7 +18,7 @@ export default function Posts(props) {
     <div className='posts'>
 
         {props.posts.map((post) => (
-          <Grid key={post.id} item xs={12} sm={6} md={6}>
+          <Grid key={post.id} item xs={12} sm={7}>
             <Post post={post} updatePost={updatePost} deletePost={deletePost}/>
           </Grid>
         ))}      

@@ -8,7 +8,7 @@ const { canEditPost } = require('./permissions/posts') // checks if user is admi
 
 router.get('/posts', posts.index) // only using auth for quick testing purposes remove after
 router.post('/posts/create', authUser, requiresAuthor, posts.create)
-router.put('/posts/:id', authUser, requiresAuthor, canEditPost, posts.update)
+router.put('/posts/:id',  posts.update) // authUser, requiresAuthor, canEditPost,
 router.delete('/posts/:id', authUser, requiresAdmin, posts.delete)
 router.get('/search/category', posts.searchCategory) // searching is available for all users
 router.get('/search/tags', posts.searchTags)

@@ -1,9 +1,11 @@
 import './sidebar.css';
 import Add from '../CreateNewPost.js'
+import Login from '../../pages/login/Login'
+import { Grid } from '@material-ui/core'
 
 export default function Sidebar(props) {
   return (
-    <div className='sidebar'>
+    <Grid item xs={12} sm={4}>
         {/* <div className="sidebarItem">
             <span className='sidebarTitle'>about me</span>
             <img 
@@ -13,8 +15,13 @@ export default function Sidebar(props) {
             How to create a blog website using React.js. Blog app React project from scratch for beginners. Design React blog app using functional React components and React Router Dom.
             </p>
         </div> */}
-        <Add client={props.client} refreshList={props.refreshList} current={props.current} cCurrent={props.cCurrent}/>
-    </div>
+
+        {props.token ? (
+          <Add client={props.client} refreshList={props.refreshList} current={props.current} cCurrent={props.cCurrent}/>
+        ) : (
+          <Login loggedIn={props.loggedIn} client={props.client}/>
+        )}
+    </Grid>
     
   )
 }

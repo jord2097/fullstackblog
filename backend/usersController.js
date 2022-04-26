@@ -10,6 +10,11 @@ exports.index = async function (req,res){
     .then((users) => res.send(users))
 }
 
+exports.getUser = async function (req,res) {
+    User.findOne({token: req.body.token })
+    .then((user) => res.send(user))
+}
+
 exports.create = function (req,res,next){
     if(!req.body.username || !req.body.password){
         return (next(createError(400, "missing username/password")))
