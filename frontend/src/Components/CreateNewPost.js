@@ -1,4 +1,5 @@
 import React from "react";
+
 const CreateNewPost = props => {
   return (
     <>
