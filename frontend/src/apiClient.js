@@ -1,5 +1,6 @@
 import axios from 'axios';
-const url = 'https://hdj-blog-api.herokuapp.com/' // URL for the API server either local host or https://hdj-blog-api.herokuapp.com/
+
+const url = 'http:/localhost:3000' // URL for the API server
 
 export class apiClient {
     constructor(token) {
@@ -16,6 +17,29 @@ export class apiClient {
         })
     }
 
+    authenticatedCall(method,url,data) {
+        return axios({
+            method,
+            url,
+            headers: {
+                authorization: this.token
+            },
+            data,
+        }).catch((error) => {
+            throw error
+        })
+    }
+
+    // auth operations
+
+    async register(displayName, username, password, email) {
+        return await this.apiCall("post", `${url}/register`, { displayName, username, password, email } )
+    }
+
+    async login(username, password) {
+        return await this.apiCall("post", `${url}/login`, { username, password })
+    }
+
     // basic post operations
 
     getPosts() {
@@ -23,15 +47,15 @@ export class apiClient {
     }
 
     createPost(title, mainText, img, category, tags, draft, published) {
-        return this.apiCall("post", `${url}/create`, { title, mainText, img, category, tags, draft, published })
+        return this.authenticatedCall("post", `${url}/posts/create`, { title, mainText, img, category, tags, draft, published })
     }
 
     updatePost(_id, title, mainText, img, category, tags, draft, published) {
-        return this.apiCall("put", `${url}/${_id}`, { title, mainText, img, category, tags, draft, published })
+        return this.authenticatedCall("put", `${url}/posts/${_id}`, { title, mainText, img, category, tags, draft, published })
     }
 
     deletePost(_id) {
-        return this.apiCall("delete", `${url}/${_id}`)
+        return this.authenticatedCall("delete", `${url}/posts/${_id}`)
     }
 
     // basic user operations
@@ -41,15 +65,15 @@ export class apiClient {
     }
 
     addUser(username, password, displayName, email) {
-        return this.apiCall("post", `${url}/users/create`, { username, password, displayName, email})
+        return this.authenticatedCall("post", `${url}/users/create`, { username, password, displayName, email})
     }
 
     updateUser(_id, username, password, displayName, email) {
-        return this.apiCall("put", `${url}/users/${_id}`, { username, password, displayName, email })
+        return this.authenticatedCall("put", `${url}/users/${_id}`, { username, password, displayName, email })
     }
 
     deleteUser(_id) {
-        return this.apiCall("delete", `${url}/users/${_id}`)
+        return this.authenticatedCall("delete", `${url}/users/${_id}`)
     }
 
     // extra features
@@ -63,7 +87,11 @@ export class apiClient {
     }
 
     showDrafts() {
-        return this.apiCall("get", `${url}/posts/drafts`)
+        return this.authenticatedCall("get", `${url}/posts/drafts`)
+    }
+
+    showUnpublished() {
+        return this.authenticatedCall("get", `${url}/posts/unpublished`)
     }
 
 }

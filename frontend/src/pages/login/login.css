@@ -1,0 +1,42 @@
+/* *{
+    background-color: azure;
+} */
+.loginPage{
+    display: flex;
+    margin-top: 200px;
+    
+    
+   
+}
+.loginPageText{
+    flex: 6;
+    
+    box-shadow:0 4px 8px 0 rgba(39, 200, 34, 0.2), 0 6px 20px 0 rgba(52, 237, 6, 0.138);
+}
+.rightbar, .leftbar{
+    flex:3;
+    
+}
+.loginButton{
+    color: white;
+    background-color: teal;
+    margin-top: 20px;
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+  
+  
+}
+.form{
+    
+    margin-top: 10%;
+    display:flex
+}
+.loginPageText{
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+.loginInput{
+    margin: 4%;
+}
+
