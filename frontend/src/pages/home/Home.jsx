@@ -2,7 +2,6 @@ import './home.css';
 import Header from '../../components/header/Header';
 import Posts from '../../components/posts/Posts';
 import Sidebar from '../../components/sidebar/Sidebar';
-import Login from '../login/Login'
 
 export default function Home(props) {
   return (
@@ -10,7 +9,7 @@ export default function Home(props) {
     <>
         <Header/>
       <div className="home">
-        <Posts client={props.client} refreshList={props.refreshList} posts={props.posts} cPosts={props.cPosts} current={props.current} cCurrent={props.cCurrent}/>        
+        <Posts client={props.client} refreshList={props.refreshList} posts={props.posts} cPosts={props.cPosts} current={props.current} cCurrent={props.cCurrent} currentRole={props.currentRole} />        
         <Sidebar client={props.client} refreshList={() => {
             props.refreshList()
             props.cCurrent(undefined)
@@ -18,7 +17,7 @@ export default function Home(props) {
            current={props.current}
            cCurrent={props.cCurrent}
            loggedIn={props.loggedIn}
-           token={props.token}
+           token={props.token}           
         />
       </div>
     </>

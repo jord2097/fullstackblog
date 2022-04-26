@@ -22,6 +22,7 @@ router.get('/users', authUser, users.index) // not sure of intended level requir
 router.post('/users/create', authUser, requiresAdmin, users.create)
 router.put('/users/:id', authUser, requiresAdmin, users.update)
 router.delete('/users/:id', authUser, requiresAdmin, users.delete)
+router.get('/user', users.getUser)
 
 
 

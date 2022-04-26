@@ -85,5 +85,5 @@ exports.login = async function (req,res,next){
     }
     user.token = uuidv4()
     await user.save()
-    res.send({token: user.token})
+    res.send({token: user.token, role: user.role})
 }

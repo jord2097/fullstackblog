@@ -63,6 +63,10 @@ export class apiClient {
         return this.apiCall("get", `${url}/users`)
     }
 
+    getUser(token) {
+        return this.apiCall("get", `${url}/user`, { token })
+    }
+
     addUser(username, password, displayName, email) {
         return this.authenticatedCall("post", `${url}/users/create`, { username, password, displayName, email})
     }
@@ -92,5 +96,6 @@ export class apiClient {
     showUnpublished() {
         return this.authenticatedCall("get", `${url}/posts/unpublished`)
     }
+    
 
 }

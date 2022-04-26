@@ -8,23 +8,26 @@ function App() {
   const [posts, cPosts] = useState([]);
   const [current, cCurrent] = useState(undefined);
   const [token, cToken] = useState(window.localStorage.getItem("token"))
+  const [currentRole, cCurrentRole] = useState("") 
   
-
-  const loggedIn = (newToken) => {
-    window.localStorage.setItem("token", newToken);
-    cToken(newToken)
-  }
-
   const client = new apiClient(
     token
   );
+  
+  const loggedIn = (newToken, newRole) => {
+    window.localStorage.setItem("token", newToken);
+    cToken(newToken)
+    console.log(newRole)
+    console.log(typeof newRole)
+    cCurrentRole(newRole)    
+  }
 
   const refreshList = () => {
     client.getPosts().then((response) => cPosts(response.data));
   };
 
   useEffect(() => {
-    refreshList();
+    refreshList();    
   }, []);
  
   return (
@@ -40,6 +43,7 @@ function App() {
           cCurrent={cCurrent}
           token={token}
           loggedIn={loggedIn}
+          currentRole={currentRole}          
         />
       </Container>
     </Container>

@@ -13,16 +13,17 @@ export default function Login(props) {
         props.client
         .login(e.target.username.value, e.target.password.value)
         .then((response) => {
-            cDisabled(true)
-            props.loggedIn(response.data.token)
+            cDisabled(true)            
+            props.loggedIn(response.data.token, response.data.role)
+            console.log(response.data.role)                      
             // toastr notif or equiv
-        })
+        })        
         .catch(() => {
             cDisabled(false)
             // toastr/equiv
         })
     }
-
+    
     const renderRegister = () => {
         cNeedToRegister(true)
     }
@@ -45,7 +46,7 @@ export default function Login(props) {
                         <label htmlFor="Email"></label>
                         <input className='loginInput' name="username" type="text" placeholder='Username' disabled={disabled} />
                         <label htmlFor='password'></label>
-                        <input className='loginInput' name="password" type="text" placeholder='Password' disabled={disabled} />
+                        <input className='loginInput' name="password" type="password" placeholder='Password' disabled={disabled} />
                         <button className='loginButton' disabled={disabled} type="submit">Login</button>
                     </form>               
                 </div>
