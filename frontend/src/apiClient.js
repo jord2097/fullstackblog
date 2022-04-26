@@ -1,5 +1,5 @@
 import axios from 'axios';
-const url = 'http:localhost:3000' // URL for the API server
+const url = 'http:/localhost:3000' // URL for the API server
 
 export class apiClient {
     constructor(token) {
