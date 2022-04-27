@@ -53,7 +53,7 @@ switch (props.currentRole) {
             ></input>
             <br />
             <br />
-            <textarea
+            <textarea // rich text
               // onChange={props.savePostContentToState}
               name="mainText"
               placeholder="Content"
