@@ -1,6 +1,5 @@
 import axios from 'axios';
-
-const url = 'http:/localhost:3000' // URL for the API server
+const url = 'http://localhost:3000' // URL for the API server
 
 export class apiClient {
     constructor(token) {
@@ -51,7 +50,7 @@ export class apiClient {
     }
 
     updatePost(_id, title, mainText, img, category, tags, draft, published) {
-        return this.authenticatedCall("put", `${url}/posts/${_id}`, { title, mainText, img, category, tags, draft, published })
+        return this.apiCall("put", `${url}/posts/${_id}`, { title, mainText, img, category, tags, draft, published })
     }
 
     deletePost(_id) {
@@ -62,6 +61,10 @@ export class apiClient {
 
     getUsers() {
         return this.apiCall("get", `${url}/users`)
+    }
+
+    getUser(token) {
+        return this.apiCall("get", `${url}/user`, { token })
     }
 
     addUser(username, password, displayName, email) {
@@ -93,5 +96,6 @@ export class apiClient {
     showUnpublished() {
         return this.authenticatedCall("get", `${url}/posts/unpublished`)
     }
+    
 
 }

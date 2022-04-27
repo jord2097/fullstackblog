@@ -1,33 +1,71 @@
 import './login.css'
+import React, { useState } from 'react'
+import { Button, Typography } from '@material-ui/core'
 
-export default function Login() {
-  return (
 
-    <div className='loginPage'>
+export default function Login(props) {
+    const [disabled, cDisabled] = useState(false)
+    const [needToRegister, cNeedToRegister] = useState(false)
 
-        <div className='rightbar'></div>
-            <div className='loginPageText'>
+    const submitHandler = (e) => {
+        e.preventDefault()
+        cDisabled(true)
+        props.client
+        .login(e.target.username.value, e.target.password.value)
+        .then((response) => {
+            cDisabled(true)            
+            props.loggedIn(response.data.token, response.data.role)                                 
+            // toastr notif or equiv
+        })        
+        .catch(() => {
+            cDisabled(false)
+            // toastr/equiv
+        })
+    }
+    
+    const renderRegister = () => {
+        cNeedToRegister(true)
+    }
+
+    const renderLogin = () => {
+        cNeedToRegister(false)
+    }
+
+    return (
+
+        <div className='loginPage'>
+            {!needToRegister ? (
+                <div className='loginPageText'>
                 <div>
                 <h1> Welcome to the page</h1>
                 <p>Here you can login or create a username to login to the blog page.</p>
                 </div>
-                <div className='form'>
+                <div className='form' onSubmit={submitHandler} autocomplete="off" disabled={disabled}>
                     <form >
                         <label htmlFor="Email"></label>
-                        <input className='loginInput'  type="text" placeholder='Enter your email here' />
+                        <input className='loginInput' name="username" type="text" placeholder='Username' disabled={disabled} />
                         <label htmlFor='password'></label>
-                        <input className='loginInput' type="text" placeholder='Enter your password'/>
-                        <button className='loginButton'>Login</button>
-                    </form>
+                        <input className='loginInput' name="password" type="password" placeholder='Password' disabled={disabled} />
+                        <button className='loginButton' disabled={disabled} type="submit">Login</button>
+                    </form>               
                 </div>
+                <Typography variant="h8">
+                        Don't have an account yet?
+                        <br />
+                        <Button onClick={renderRegister} variant="contained" disabled={disabled} color="primary" size="small" >Register</Button>
+                    </Typography>                
+                </div>
+            ) : (
+                <div>
+                    <h1>Register Component Goes Here</h1>
+                    <Button onClick={renderLogin}></Button>
+                </div>
+            )}
+            {/* <div className='rightbar'></div>              
+            
+            <div className='leftbar'></div> */}
 
-               
-                
-            </div>
+        </div>
         
-        <div className='leftbar'></div>
-
-    </div>
-    
-  )
+    )
 }

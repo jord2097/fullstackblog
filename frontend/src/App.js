@@ -2,32 +2,65 @@ import React, { useState, useEffect } from "react";
 import Home from "./pages/home/Home";
 import TopBar from "./components/topbar/TopBar";
 import { apiClient } from "./apiClient.js";
+import { Container } from '@material-ui/core'
 
 function App() {
   const [posts, cPosts] = useState([]);
   const [current, cCurrent] = useState(undefined);
-  const client = new apiClient();
+  const [token, cToken] = useState(window.localStorage.getItem("token"))
+  const [currentRole, cCurrentRole] = useState("") 
+    
+  const loggedIn = (newToken, newRole) => {
+    if (newToken === undefined){
+      window.localStorage.setItem("token","")
+      cToken("")
+      cCurrentRole("")
+      return
+    }
+    window.localStorage.setItem("token", newToken);
+    cToken(newToken)
+    console.log(newRole)
+    console.log(typeof newRole)
+    cCurrentRole(newRole)    
+  }
+
+  const logout = () => {
+    window.localStorage.setItem("token", "")
+    cToken("")
+  }
+
+  const client = new apiClient(
+    token,
+    logout
+  );
+  
+  
 
   const refreshList = () => {
     client.getPosts().then((response) => cPosts(response.data));
   };
 
   useEffect(() => {
-    refreshList();
-  });
-
+    refreshList();    
+  }, []);
+ 
   return (
-    <>
+    <Container maxWidth="lg">
       <TopBar />
-      <Home
-        client={client}
-        refreshList={refreshList}
-        posts={posts}
-        cPosts={cPosts}
-        current={current}
-        cCurrent={cCurrent}
-      />
-    </>
+      <Container>
+        <Home
+          client={client}
+          refreshList={refreshList}
+          posts={posts}
+          cPosts={cPosts}
+          current={current}
+          cCurrent={cCurrent}
+          token={token}
+          loggedIn={loggedIn}
+          currentRole={currentRole}          
+        />
+      </Container>
+    </Container>
   );
 }
 export default App;

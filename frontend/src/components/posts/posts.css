@@ -6,5 +6,5 @@
 
  /* this above line will make your posts appear side by side is their size can fit the container.
  otherwise they will appear on top of each other */
- margin: 20px;
+  margin: 20px; 
 }

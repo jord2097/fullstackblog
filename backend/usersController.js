@@ -3,11 +3,31 @@ const jwt = require('jsonwebtoken')
 const { ObjectId } = require('mongodb')
 const { User } = require('./models/users.js')
 const { v4: uuidv4 } = require('uuid') // tokens
+const config = require('./config.json');
 
 
 exports.index = async function (req,res){
     User.find()
     .then((users) => res.send(users))
+}
+
+exports.indexSecure = async function (req,res,next){ // not secured yet, userWithoutPassword operation not working
+    const users = await User.find()
+    users.map (users => {
+        const { password, ...userWithoutPassword } = users
+        return userWithoutPassword        
+    })
+    console.log(users)
+    res.send(users)
+    
+}
+
+exports.getByIDSecure = function (id){
+    const user = User.find(u => u._id === ObjectId(id))
+    if (!user) return
+    const { password, ...userWithoutPassword } = user
+    return userWithoutPassword
+
 }
 
 exports.create = function (req,res,next){
@@ -70,15 +90,15 @@ exports.register = async function (req, res, next){
 
 exports.login = async function (req,res,next){
     const user = await User.findOne({username: req.body.username})
-    if(!user){
-        res.sendStatus(401)
-        return res.send("No account found.")
+    if (user) {
+        const token = jwt.sign({ sub: user._id, role: user.role}, config.secret)
+        user.token = token
+        const {password, ...userWithoutPassword} = user
+        await user.save()
+        return {
+            ...userWithoutPassword,
+            token
+        }
     }
-    if(req.body.password !== user.password){
-        res.sendStatus(403)
-        return res.send("Password Incorrect")
-    }
-    user.token = uuidv4()
-    await user.save()
-    res.send({token: user.token})
+    
 }

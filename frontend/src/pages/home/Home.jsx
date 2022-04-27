@@ -8,18 +8,19 @@ export default function Home(props) {
 
     <>
         <Header/>
-    <div className="home">
-        <Posts client={props.client} refreshList={props.refreshList} posts={props.posts} cPosts={props.cPosts} current={props.current} cCurrent={props.cCurrent}/>
+      <div className="home">
+        <Posts client={props.client} refreshList={props.refreshList} posts={props.posts} cPosts={props.cPosts} current={props.current} cCurrent={props.cCurrent} currentRole={props.currentRole} />        
         <Sidebar client={props.client} refreshList={() => {
-           props.refreshList()
-           props.cCurrent(undefined)
-          }}
-          current={props.current}
-          cCurrent={props.cCurrent}/>
-          
-        
-
-     </div>
+            props.refreshList()
+            props.cCurrent(undefined)
+           }}
+           current={props.current}
+           cCurrent={props.cCurrent}
+           loggedIn={props.loggedIn}
+           token={props.token}
+           currentRole={props.currentRole}           
+        />
+      </div>
     </>
   )
 }
