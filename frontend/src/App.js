@@ -9,18 +9,32 @@ function App() {
   const [current, cCurrent] = useState(undefined);
   const [token, cToken] = useState(window.localStorage.getItem("token"))
   const [currentRole, cCurrentRole] = useState("") 
-  
-  const client = new apiClient(
-    token
-  );
-  
+    
   const loggedIn = (newToken, newRole) => {
+    if (newToken === undefined){
+      window.localStorage.setItem("token","")
+      cToken("")
+      cCurrentRole("")
+      return
+    }
     window.localStorage.setItem("token", newToken);
     cToken(newToken)
     console.log(newRole)
     console.log(typeof newRole)
     cCurrentRole(newRole)    
   }
+
+  const logout = () => {
+    window.localStorage.setItem("token", "")
+    cToken("")
+  }
+
+  const client = new apiClient(
+    token,
+    logout
+  );
+  
+  
 
   const refreshList = () => {
     client.getPosts().then((response) => cPosts(response.data));

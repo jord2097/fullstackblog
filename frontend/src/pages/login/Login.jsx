@@ -14,8 +14,7 @@ export default function Login(props) {
         .login(e.target.username.value, e.target.password.value)
         .then((response) => {
             cDisabled(true)            
-            props.loggedIn(response.data.token, response.data.role)
-            console.log(response.data.role)                      
+            props.loggedIn(response.data.token, response.data.role)                                 
             // toastr notif or equiv
         })        
         .catch(() => {

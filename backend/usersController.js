@@ -63,9 +63,8 @@ exports.delete = function (req,res,next){
 
 exports.register = async function (req, res, next){
     const checkUser = await User.findOne({username: req.body.username})
-    if(checkUser){
-        res.sendStatus(409)
-        return res.send("User Already Exists")
+    if(checkUser){        
+        return (createError(409, "User already exists"))
     }
     const newUserDetails = req.body
     const user = new User(newUserDetails)
@@ -75,13 +74,11 @@ exports.register = async function (req, res, next){
 
 exports.login = async function (req,res,next){
     const user = await User.findOne({username: req.body.username})
-    if(!user){
-        res.sendStatus(401)
-        return res.send("No account found.")
+    if(!user){        
+        return (next(createError(404, "No account with that username found")))
     }
-    if(req.body.password !== user.password){
-        res.sendStatus(403)
-        return res.send("Password Incorrect")
+    if(req.body.password !== user.password){        
+        return (next(createError(403, "Invalid Password")))
     }
     user.token = uuidv4()
     await user.save()

@@ -17,7 +17,8 @@ export default function Home(props) {
            current={props.current}
            cCurrent={props.cCurrent}
            loggedIn={props.loggedIn}
-           token={props.token}           
+           token={props.token}
+           currentRole={props.currentRole}           
         />
       </div>
     </>
