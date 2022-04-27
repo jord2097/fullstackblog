@@ -3,16 +3,12 @@ const jwt = require('jsonwebtoken')
 const { ObjectId } = require('mongodb')
 const { User } = require('./models/users.js')
 const { v4: uuidv4 } = require('uuid') // tokens
+const config = require('config.json');
 
 
 exports.index = async function (req,res){
     User.find()
     .then((users) => res.send(users))
-}
-
-exports.getUser = async function (req,res) {
-    User.findOne({token: req.body.token })
-    .then((user) => res.send(user))
 }
 
 exports.create = function (req,res,next){
@@ -63,8 +59,9 @@ exports.delete = function (req,res,next){
 
 exports.register = async function (req, res, next){
     const checkUser = await User.findOne({username: req.body.username})
-    if(checkUser){        
-        return (createError(409, "User already exists"))
+    if(checkUser){
+        res.sendStatus(409)
+        return res.send("User Already Exists")
     }
     const newUserDetails = req.body
     const user = new User(newUserDetails)
@@ -73,14 +70,11 @@ exports.register = async function (req, res, next){
 }
 
 exports.login = async function (req,res,next){
-    const user = await User.findOne({username: req.body.username})
+    const user = await User.findOne(u => u.username === req.body.username && u.password === req.body.password)
     if(!user){        
-        return (next(createError(404, "No account with that username found")))
-    }
-    if(req.body.password !== user.password){        
-        return (next(createError(403, "Invalid Password")))
-    }
-    user.token = uuidv4()
+        return res.status(401).json("No account found.")
+    }    
+    user.token = jwt.sign({ sub: user._id, role: user.role}, config.secret)
     await user.save()
-    res.send({token: user.token, role: user.role})
+    res.send({token: user.token})
 }
