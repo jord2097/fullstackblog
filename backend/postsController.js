@@ -14,7 +14,7 @@ exports.create = async function (req,res,next){
     if(!req.body.title || !req.body.mainText){
         return (next(createError(400, "missing title and/or main text")))
     }
-    const postCreator = await User.findOne({token: req.headers.authorization})
+    const postCreator = await User.findOne({_id: req.auth.sub})
     const creatorID = postCreator._id
     
 

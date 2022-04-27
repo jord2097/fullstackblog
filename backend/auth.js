@@ -1,6 +1,6 @@
 const { User } = require('./models/users.js')
-const jwt = require('express-jwt')
-const { secret } = require('config.json')
+const { expressjwt: jwt } = require('express-jwt')
+const { secret } = require('./config.json')
 
 /* async function authenticate (req, res, next) { // authentication middleware
     const token = req.headers.authorization
@@ -22,11 +22,13 @@ function authorize(roles = []) { // authorization middleware
 
     return [
         // authenticates JWT token and appends userdata to req.user
-        jwt({secret, algorithms:['HS256']}),
+        jwt({ secret, algorithms: ['HS256'] }),
+        
 
         // authorizes based on user roles
         (req,res,next) => {
-            if (roles.length && !roles.includes(req.user.role)) {
+            
+            if (roles.length && !roles.includes(req.auth.role)) {
                 // user doesn't have the required role
                 return res.status(401).json({message: 'Unauthorized'})
             }
