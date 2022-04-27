@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
-import { Editor } from 'react-draft-wysiwyg';
-import { EditorState } from 'draft.js'
-import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import React, { Component } from "react";
+import { Editor } from "react-draft-wysiwyg";
+import { EditorState, convertToRaw } from "draft-js";
+import draftToHtml from "draftjs-to-html"
+import htmlToDraft from "html-to-draftjs"
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
-export default class RichTextEditor extends Component{
+export default class RichTextEditor extends Component {
 
     state = {
         editorState: EditorState.createEmpty(),
@@ -15,19 +17,22 @@ export default class RichTextEditor extends Component{
         });
     };
 
-    render() {
+    render () {
         const {editorState} = this.state;
+        console.log(draftToHtml(convertToRaw(editorState.getCurrentContent())));
 
         return (
             <div>
                 <Editor
                     editorState={editorState}
+                    toolbarClassName="toolbarClassName"
                     wrapperClassName="wrapperClassName"
                     editorClassName="editorClassName"
-                    toolbarClassName="toolbarClassName"
                     onEditorStateChange={this.onEditorStateChange}
                 />
+
+                <button onSubmit={draftToHtml(convertToRaw(editorState.getCurrentContent()))}>Submit Editor Text</button>
             </div>
-        );
+        )
     }
 }

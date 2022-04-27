@@ -1,16 +1,24 @@
 import './home.css';
-import Header from '../../Components/header/Header';
-import Posts from '../../Components/posts/Posts';
-import Sidebar from '../../Components/sidebar/Sidebar';
+import Header from '../../components/header/Header';
+import Posts from '../../components/posts/Posts';
+import Sidebar from '../../components/sidebar/Sidebar';
 
-export default function Home() {
+export default function Home(props) {
   return (
 
     <>
         <Header/>
     <div className="home">
-        <Posts/>
-        <Sidebar/>
+        <Posts client={props.client} refreshList={props.refreshList} posts={props.posts} cPosts={props.cPosts} current={props.current} cCurrent={props.cCurrent}/>
+        <Sidebar client={props.client} refreshList={() => {
+           props.refreshList()
+           props.cCurrent(undefined)
+          }}
+          current={props.current}
+          cCurrent={props.cCurrent}/>
+          
+        
+
      </div>
     </>
   )

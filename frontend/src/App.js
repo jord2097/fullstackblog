@@ -1,15 +1,17 @@
-
-import React from 'react';
-import Home from "./pages/home/Home";
-import TopBar from "./Components/topbar/TopBar";
+import React from "react";
+import RichTextEditor from "./components/richTextEditor";
+import "./App.css";
 
 function App() {
-  return (
-    <>
-      <TopBar/>
-      <Home/>
-    </>
-
-  );
-};
+return (
+  <div className="App">
+    <header className="App-header">
+      <h1>React Text Editor</h1>
+    </header>
+    <div className="editor">
+      <RichTextEditor />
+    </div>
+  </div>
+);
+}
 export default App;
