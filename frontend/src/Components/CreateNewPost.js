@@ -12,7 +12,8 @@ const CreateNewPost = (props) => {
         e.target.mainText.value,
         e.target.img.value,
         e.target.category.value,
-        e.target.tags.value
+        e.target.tags.value,
+        e.target.draft.checked
       )
     } else {
       result = props.client.createPost(
@@ -20,7 +21,8 @@ const CreateNewPost = (props) => {
         e.target.mainText.value,
         e.target.img.value,
         e.target.category.value,
-        e.target.tags.value
+        e.target.tags.value,
+        e.target.draft.checked
       )
     }
     result
@@ -80,6 +82,13 @@ switch (props.currentRole) {
               
             ></input>
             <br />
+            <input
+            type="checkbox"
+            name="draft"      
+            defaultValue={props.current?.draft}
+
+            ></input>
+            <label for="draft">Mark as draft?</label>
             <section className="button-wrapper">
               <button className="button">Publish</button>
             </section>
