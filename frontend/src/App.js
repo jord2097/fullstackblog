@@ -1,17 +1,33 @@
-import React from "react";
-import RichTextEditor from "./components/richTextEditor";
-import "./App.css";
+import React, { useState, useEffect } from "react";
+import Home from "./pages/home/Home";
+import TopBar from "./components/topbar/TopBar";
+import { apiClient } from "./apiClient.js";
 
 function App() {
-return (
-  <div className="App">
-    <header className="App-header">
-      <h1>React Text Editor</h1>
-    </header>
-    <div className="editor">
-      <RichTextEditor />
-    </div>
-  </div>
-);
+  const [posts, cPosts] = useState([]);
+  const [current, cCurrent] = useState(undefined);
+  const client = new apiClient();
+
+  const refreshList = () => {
+    client.getPosts().then((response) => cPosts(response.data));
+  };
+
+  useEffect(() => {
+    refreshList();
+  });
+
+  return (
+    <>
+      <TopBar />
+      <Home
+        client={client}
+        refreshList={refreshList}
+        posts={posts}
+        cPosts={cPosts}
+        current={current}
+        cCurrent={cCurrent}
+      />
+    </>
+  );
 }
 export default App;
