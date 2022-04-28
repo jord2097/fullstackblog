@@ -31,6 +31,6 @@ function login ( username, password ) {
 
 function logout() {
     // removes user details from localStorage thus logging them out
-    localStorage.removeItem('currentUser')
+    localStorage.setItem("currentUser", "{}")
     currentUserSubject.next({})
 }
