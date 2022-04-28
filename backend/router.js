@@ -19,7 +19,7 @@ router.get('/posts/drafts',  authorize([Role.author, Role.admin]), posts.showDra
 router.get('posts/unpublished',  authorize([Role.author, Role.admin]), posts.showUnpublished) // show unpublished posts
 router.delete('/posts/deleteall/:confirm',  authorize(Role.admin), posts.deleteAll) // delete all, not used in frontend
 
-router.get('/userdata', authorize(Role.admin), users.index) // insecure as provides passwords
+router.get('/admin/users', authorize(Role.admin), users.index) // insecure as provides passwords
 router.get('/users', authorize([Role.user, Role.author, Role.admin]), users.indexSecure) // index with passwords removed
 router.get('/users/:id', authorize([Role.user, Role.author, Role.admin]), getUserByIDSecure) // find user with password removed
 router.post('/users/create',  authorize(Role.admin), users.create) // admin ability to create account
@@ -30,7 +30,7 @@ router.post('/login', authenticate)
 
 function authenticate(req,res,next) {
     users.login(req, res, next)
-        .then(user => user ? res.send({token: user.token})
+        .then(user => user ? res.json(user)
             
          : res.status(400).json({message: 'Username or Password is Incorrect'}))
         .catch(err => next(err))

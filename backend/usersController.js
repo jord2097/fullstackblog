@@ -14,10 +14,9 @@ exports.index = async function (req,res){
 exports.indexSecure = async function (req,res,next){ // not secured yet, userWithoutPassword operation not working
     const users = await User.find()
     users.map (users => {
-        const { password, ...userWithoutPassword } = users
+        const { password, ...userWithoutPassword } = users        
         return userWithoutPassword        
-    })
-    console.log(users)
+    })    
     res.send(users)
     
 }
@@ -40,7 +39,8 @@ exports.create = function (req,res,next){
         password: req.body.password,
         token: req.body.token,
         displayName: req.body.displayName,
-        email: req.body.email
+        email: req.body.email,
+        role: req.body.role
     })
 
     user.save()
@@ -89,14 +89,15 @@ exports.register = async function (req, res, next){
 }
 
 exports.login = async function (req,res,next){
-    const user = await User.findOne({username: req.body.username})
+    const user = await User.findOne({username: req.body.username}).select("-password",)
+    console.log(user)
     if (user) {
         const token = jwt.sign({ sub: user._id, role: user.role}, config.secret)
-        user.token = token
-        const {password, ...userWithoutPassword} = user
+        user.token = token     
+        // const {password, ...userWithoutPassword} = user        
         await user.save()
         return {
-            ...userWithoutPassword,
+            user,
             token
         }
     }
