@@ -7,8 +7,13 @@ import { authService } from './_services/auth-service'
 
 function App() {
   const [posts, cPosts] = useState([]);
-  const [current, cCurrent] = useState(undefined);  
-  const currentUser = authService.currentUserValue
+  const [current, cCurrent] = useState(undefined);
+  const [currentUser, cCurrentUser] = useState(authService.currentUserValue)
+  
+  const loggedIn = () => {
+    cCurrentUser(authService.currentUserValue)
+  }
+  
   const clientToken = currentUser.token 
  
   const client = new apiClient(
@@ -20,7 +25,7 @@ function App() {
   };
 
   useEffect(() => {
-    refreshList();    
+    refreshList();   
   }, []);
  
   return (
@@ -34,7 +39,8 @@ function App() {
           cPosts={cPosts}
           current={current}
           cCurrent={cCurrent}          
-          currentUser={currentUser}   
+          currentUser={currentUser}
+          loggedIn={loggedIn}   
         />
       </Container>
     </Container>

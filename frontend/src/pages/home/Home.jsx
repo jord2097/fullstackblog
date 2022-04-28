@@ -16,7 +16,8 @@ export default function Home(props) {
            }}
            current={props.current}
            cCurrent={props.cCurrent}           
-           currentUser={props.currentUser} 
+           currentUser={props.currentUser}
+           loggedIn={props.loggedIn} 
         />
       </div>
     </>
