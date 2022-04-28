@@ -2,8 +2,9 @@ const createError = require('http-errors')
 const jwt = require('jsonwebtoken')
 const { ObjectId } = require('mongodb')
 const { User } = require('./models/users.js')
-const { v4: uuidv4 } = require('uuid') // tokens
 const config = require('./config.json');
+const roles = require('./models/roles')
+
 
 
 exports.index = async function (req,res){
@@ -12,21 +13,26 @@ exports.index = async function (req,res){
 }
 
 exports.indexSecure = async function (req,res,next){ // not secured yet, userWithoutPassword operation not working
-    const users = await User.find()
+    const users = await User.find().select("-password")
     users.map (users => {
-        const { password, ...userWithoutPassword } = users
-        return userWithoutPassword        
-    })
-    console.log(users)
+        // const { password, ...userWithoutPassword } = users        
+        return users     
+    })    
     res.send(users)
     
 }
 
-exports.getByIDSecure = function (id){
-    const user = User.find(u => u._id === ObjectId(id))
-    if (!user) return
-    const { password, ...userWithoutPassword } = user
-    return userWithoutPassword
+exports.getByIDSecure = function (req, res, next){    
+    User.findOne({_id: ObjectId(req.params.id)})    
+    .then((user) => {
+        if (!user) {
+            return res.status(404).json({message: "No user with that id."})
+        }
+        if (req.auth._id !== req.params.id && req.auth.role !== roles.admin) {
+            return res.status(403).json({message: "You do not have permission to access this record."})
+        }
+        res.send(user)
+    })
 
 }
 
@@ -40,7 +46,8 @@ exports.create = function (req,res,next){
         password: req.body.password,
         token: req.body.token,
         displayName: req.body.displayName,
-        email: req.body.email
+        email: req.body.email,
+        role: req.body.role
     })
 
     user.save()
@@ -89,14 +96,15 @@ exports.register = async function (req, res, next){
 }
 
 exports.login = async function (req,res,next){
-    const user = await User.findOne({username: req.body.username})
+    const user = await User.findOne({username: req.body.username}).select("-password")
+    console.log(user)
     if (user) {
         const token = jwt.sign({ sub: user._id, role: user.role}, config.secret)
-        user.token = token
-        const {password, ...userWithoutPassword} = user
+        user.token = token     
+        // const {password, ...userWithoutPassword} = user        
         await user.save()
         return {
-            ...userWithoutPassword,
+            user,
             token
         }
     }

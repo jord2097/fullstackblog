@@ -13,8 +13,10 @@ export default function Login(props) {
         props.client
         .login(e.target.username.value, e.target.password.value)
         .then((response) => {
-            cDisabled(true)            
-            props.loggedIn(response.data.token, response.data.role)                                 
+            cDisabled(true)
+            console.log(response)              
+            props.loggedIn(response.data.token, response.data.user.role) //deprecated
+                                       
             // toastr notif or equiv
         })        
         .catch(() => {

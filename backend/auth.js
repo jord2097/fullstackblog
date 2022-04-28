@@ -2,18 +2,6 @@ const { User } = require('./models/users.js')
 const { expressjwt: jwt } = require('express-jwt')
 const { secret } = require('./config.json')
 
-/* async function authenticate (req, res, next) { // authentication middleware
-    const token = req.headers.authorization
-    console.log(token)
-    if(!token || token == null){        
-        return res.send("You need to login first.")
-    }
-    const checkToken = await User.findOne({token: token})
-    if (!checkToken){        
-        return res.send("You may need to login again due to session expiry.")
-    }    
-    next()
-} */
 
 function authorize(roles = []) { // authorization middleware
     if (typeof roles === 'string') {
@@ -39,7 +27,18 @@ function authorize(roles = []) { // authorization middleware
     ]
 }
 
-
+/* async function authenticate (req, res, next) { // authentication middleware
+    const token = req.headers.authorization
+    console.log(token)
+    if(!token || token == null){        
+        return res.send("You need to login first.")
+    }
+    const checkToken = await User.findOne({token: token})
+    if (!checkToken){        
+        return res.send("You may need to login again due to session expiry.")
+    }    
+    next()
+} */
 
 /* async function requiresAuthor (req, res, next) {
     const currentUser = await User.findOne({token: req.headers.authorization})

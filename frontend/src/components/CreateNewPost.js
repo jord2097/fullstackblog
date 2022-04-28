@@ -1,6 +1,7 @@
 import React from "react";
 import { Paper } from '@material-ui/core'
 
+
 const CreateNewPost = (props) => {
   const submitHandler = (e) => {
     e.preventDefault();
@@ -32,7 +33,7 @@ const CreateNewPost = (props) => {
     })    
   };
 
-switch (props.currentRole) {
+switch (props.currentUser.user.role) {
   case "author": // add post form shows to permitted users
   case "admin":
     return (
@@ -88,7 +89,7 @@ switch (props.currentRole) {
             defaultValue={props.current?.draft}
 
             ></input>
-            <label for="draft">Mark as draft?</label>
+            <label htmlFor="draft">Mark as draft?</label>
             <section className="button-wrapper">
               <button className="button">Publish</button>
             </section>

@@ -18,8 +18,8 @@ export default function Post(props) {
             </div>
             <span className="postTitle"> {props.post.title} </span>
             <br />
-            {props.currentRole === "author" && <button onClick={() => props.updatePost(props.post)}>Update Post</button> }
-            {props.currentRole === "admin" && (
+            {props.currentUser.user.role === "author" && <button onClick={() => props.updatePost(props.post)}>Update Post</button> }
+            {props.currentUser.user.role === "admin" && (
               <>
               <button onClick={() => props.updatePost(props.post)}>Update Post</button>
               <button onClick={() => props.deletePost(props.post._id)} >Delete Post</button>
