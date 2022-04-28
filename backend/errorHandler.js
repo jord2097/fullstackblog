@@ -12,5 +12,5 @@ function errorHandler(err,req,res,next){
     }
 
     // generic error
-    return res.status(500).json({ message: err.message, headers: req.headers.authorization})
+    return res.status(500).json({ message: err.message}) //headers: req.headers.authorization if need to test headers
 }

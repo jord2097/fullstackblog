@@ -21,7 +21,7 @@ router.delete('/posts/deleteall/:confirm',  authorize(Role.admin), posts.deleteA
 
 router.get('/admin/users', authorize(Role.admin), users.index) // insecure as provides passwords
 router.get('/users', authorize([Role.user, Role.author, Role.admin]), users.indexSecure) // index with passwords removed
-router.get('/users/:id', authorize([Role.user, Role.author, Role.admin]), getUserByIDSecure) // find user with password removed
+router.get('/users/:id', authorize([Role.user, Role.author, Role.admin]), users.getByIDSecure) // find user with password removed
 router.post('/users/create',  authorize(Role.admin), users.create) // admin ability to create account
 router.put('/users/:id',  authorize(Role.admin), users.update) // admin amend account details
 router.delete('/users/:id', authorize(Role.admin), users.delete) // admin delete accounts
@@ -36,25 +36,6 @@ function authenticate(req,res,next) {
         .catch(err => next(err))
 }
 
-/* function getUsersSecure(req,res,next){
-    users.indexSecure()
-    .then(users => res.json(users))
-    .catch(err => next(err))
-} */
-
-function getUserByIDSecure(req,res,next){
-    const currentUser = req.user
-    const id = ObjectId(req.params.id)
-
-    if (id !== currentUser.sub && currentUser.role !== Role.admin) {
-        return res.status(401).json({message: 'Unauthorized'})
-    }
-
-    userService.getByID(req.params.id)
-        .then(user => user ? res.json(user) : res.sendStatus(404))
-        .catch(err => next(err))
-
-}
 
 
 
