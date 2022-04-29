@@ -1,7 +1,32 @@
 import './post.css';
 
 
-export default function Post(props) {
+export default function Post(props) { 
+
+  function renderButtons() {
+    if (props.currentUser.user){
+      if (props.currentUser.user.role === "author"){
+        return (
+          <>
+          <button onClick={() => props.updatePost(props.post)}>Update Post</button>
+          <span> (Author Controls) </span>
+          </>
+        )
+      } else if (props.currentUser.user.role === "admin"){
+        return (
+          <>
+              
+              <button onClick={() => props.updatePost(props.post)}>Update Post</button>
+              <button onClick={() => props.deletePost(props.post._id)} >Delete Post</button>
+              <span> (Admin Controls)  </span>
+          </>
+        )
+      } else return
+    }
+  }
+
+
+
   return (
       <>
     <div className='post'>
@@ -17,14 +42,8 @@ export default function Post(props) {
                   
             </div>
             <span className="postTitle"> {props.post.title} </span>
-            <br />
-            {props.currentUser.user.role === "author" && <button onClick={() => props.updatePost(props.post)}>Update Post</button> }
-            {props.currentUser.user.role === "admin" && (
-              <>
-              <button onClick={() => props.updatePost(props.post)}>Update Post</button>
-              <button onClick={() => props.deletePost(props.post._id)} >Delete Post</button>
-              </>
-            )}
+            <br />            
+            {renderButtons()}
             
             <hr/>
             {/* hr adds line */}

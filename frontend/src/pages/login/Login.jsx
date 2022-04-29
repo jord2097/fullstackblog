@@ -1,6 +1,7 @@
 import './login.css'
 import React, { useState } from 'react'
 import { Button, Typography } from '@material-ui/core'
+import Register from '../register/Register'
 
 
 export default function Login(props) {
@@ -13,10 +14,8 @@ export default function Login(props) {
         props.client
         .login(e.target.username.value, e.target.password.value)
         .then((response) => {
-            cDisabled(true)
-            console.log(response)              
-            props.loggedIn(response.data.token, response.data.user.role) //deprecated
-                                       
+            cDisabled(true)           
+            props.loggedIn()           
             // toastr notif or equiv
         })        
         .catch(() => {
@@ -59,8 +58,7 @@ export default function Login(props) {
                 </div>
             ) : (
                 <div>
-                    <h1>Register Component Goes Here</h1>
-                    <Button onClick={renderLogin}></Button>
+                    <Register client={props.client} renderLogin={renderLogin}/>
                 </div>
             )}
             {/* <div className='rightbar'></div>              
