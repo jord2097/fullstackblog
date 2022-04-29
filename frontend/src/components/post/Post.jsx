@@ -1,7 +1,7 @@
 import './post.css';
 
 
-export default function Post(props) {
+export default function Post(props) { 
 
   function renderButtons() {
     if (props.currentUser.user){
