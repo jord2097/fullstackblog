@@ -60,7 +60,7 @@ export class apiClient {
         return this.authenticatedCall("put", `${url}/posts/${_id}`, { title, mainText, img, category, tags, draft, published })
     }    
 
-    deletePost(_id) {
+    deletePost(_id) {        
         return this.authenticatedCall("delete", `${url}/posts/${_id}`)
     }    
 

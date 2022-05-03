@@ -96,7 +96,19 @@ exports.searchTags = async function (req, res, next){
     res.send(tagMatches)
 } // searches for tag within string using regex
 
-// general searchbar function
+exports.search = async function (req, res, next){
+    let data = await Post.find(
+        {
+            "$or":[
+                {title:{"$regex": req.query.q, "$options": "gi"}},
+                {mainText:{"$regex": req.query.q, "$options": "gi"}},
+                {category:{"$regex": req.query.q, "$options": "gi"}},
+                {tags:{"$regex": req.query.q, "$options": "gi"}}
+            ]
+        }
+    )
+    res.send(data)
+}
 
 exports.showDrafts = async function (req, res, next){
     const currentDrafts = await Post.find({draft: true})

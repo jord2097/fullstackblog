@@ -4,11 +4,13 @@ import TopBar from "./components/topbar/TopBar";
 import { apiClient } from "./apiClient.js";
 import { Container } from '@material-ui/core'
 import { authService } from './_services/auth-service'
+import useStyles from './styles'
 
 function App() {
   const [posts, cPosts] = useState([]);
   const [current, cCurrent] = useState(undefined);
   const [currentUser, cCurrentUser] = useState(authService.currentUserValue)
+  const classes = useStyles()
   
   const loggedIn = () => {
     cCurrentUser(authService.currentUserValue)
@@ -32,6 +34,7 @@ function App() {
     <Container maxWidth="lg">
       <TopBar />
       <Container>
+        <div className={classes.toolbar}></div>
         <Home
           client={client}
           refreshList={refreshList}

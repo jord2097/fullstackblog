@@ -1,7 +1,10 @@
 import "./topbar.css"
+import { AppBar, TextField, Toolbar, Typography } from '@material-ui/core'
+import useStyles from '../../styles'
 
 export default function TopBar() {
-  return (
+  const classes = useStyles()
+  /* return (
     <div className="top">
         <div className="topLeft">
         <i className="topIcon fab fa-facebook-square"></i>
@@ -17,9 +20,39 @@ export default function TopBar() {
         </ul>
         
         </div>
-        <div className="topRight">
-        <i className="topSearchIcon fas fa-search"></i>
+        <Toolbar>
+          <TextField style={{backgroundColor: "#FFFFFF"}} name="search" variant="outlined" label="search"      />
+          <i className="topSearchIcon fas fa-search"></i>
+        </Toolbar>        
         </div>
-        </div>
+    
+  ) */
+  return (
+    <AppBar>
+    <Toolbar>
+      <Toolbar edge="start">
+        <i className="topIcon fab fa-facebook-square"></i>
+        <i className="topIcon fab fa-instagram-square"></i>
+        <i className="topIcon fab fa-twitter-square"></i>
+      </Toolbar>      
+      <Typography className={classes.appbarText}>HOME</Typography>
+      <Typography className={classes.appbarText}>ABOUT</Typography>
+      <Typography
+       className={classes.appbarFinalText}
+              
+      >CONTACT</Typography>
+      <TextField edge="end" style={{backgroundColor: "#FFFFFF"}} name="search" variant="outlined" label="search"/>
+      <i className="topSearchIcon fas fa-search"></i>
+
+      
+    </Toolbar>
+    
+
+
+
+
+
+    </AppBar>
   )
+  
 }
