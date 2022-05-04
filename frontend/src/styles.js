@@ -42,8 +42,13 @@ export default makeStyles((theme) => ({
     },
     searchResult: {
         display: "flex",
+        marginBottom: "40px"
     },
     searchResults: {
+        flex:"10",
+        display:"flex",
+        flexWrap: "wrap",
+        margin: "10px",
         "& div": {
             marginTop: "1rem",
             marginRight: "1rem"
@@ -51,17 +56,44 @@ export default makeStyles((theme) => ({
     },
     searchResultImage: {
         marginTop: "1rem",
-        marginRight: "1rem",
+        marginRight: "1rem",        
         width: "210px",
         height: "125px",
         borderRadius: "4px"
+    },
+    searchResultContent: {
+        flexGrow: 1
     },
     searchBar: {
         paddingRight: "1rem"
     },
     searchBarButton: {
         // match dimensions with searchbar
+    },
+    searchResultPostText: {
+        fontSize: "15px",
+        width: "400px",
+        color: "black",
+        lineHeight: "24px",
+        marginTop: "15px",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        display: "-webkit-box",
+        height: "125px",
+        webkitlineclamp: "3",
+        webkitboxorient: "vertical",
+        /* webkit-line-clamp only works in combination with web-kit-box-orient and display:-webkit-box or display: -webkit-inline-box */
+        marginBottom: "2%",
+        cursor: "pointer"             
+    },
+    searchResultSpacer: {
+        marginBottom: "10px"       
+    },
+    searchResultLayout: {
+        
     }
+    
+
 
     
 

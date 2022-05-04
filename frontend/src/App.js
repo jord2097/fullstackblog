@@ -5,7 +5,7 @@ import { apiClient } from "./apiClient.js";
 import { Container } from '@material-ui/core'
 import { authService } from './_services/auth-service'
 import useStyles from './styles'
-import {Route, Routes} from 'react-router-dom'
+import {Route, Routes, useLocation } from 'react-router-dom'
 import {Search} from './pages/search/search'
 
 function App() {
@@ -14,6 +14,9 @@ function App() {
   const [currentUser, cCurrentUser] = useState(authService.currentUserValue)
   const [query, cQuery] = useState("")
   const classes = useStyles()
+  let location = useLocation()
+  const params = new URLSearchParams(location.search)
+  const queryParam = params.get('q')
   
   const loggedIn = () => {
     cCurrentUser(authService.currentUserValue)
@@ -29,17 +32,26 @@ function App() {
     client.getPosts().then((response) => cPosts(response.data));
   };
 
+  const search = () => {
+    client.searchbar(query).then((response) => cPosts(response.data))
+  }
+
   useEffect(() => {
-    refreshList();   
-  }, []);
+    if (queryParam) {      
+      search()
+    } else {
+      refreshList();   
+    }
+    
+  }, [location]);
  
   return (
     <Container maxWidth="lg">
-      <TopBar query={query} cQuery={cQuery} />
+      <TopBar query={query} cQuery={cQuery} search={search} />
       <Container>
         <div className={classes.toolbar}></div>
         <Routes>          
-          <Route path="/search" element={<Search client={client} posts={posts} />} />
+          <Route path="/search" element={<Search client={client} posts={posts} cPosts={cPosts} />} />
           <Route path="/" element={<Home
           client={client}
           refreshList={refreshList}

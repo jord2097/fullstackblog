@@ -12,6 +12,7 @@ export default function TopBar(props) {
     e.preventDefault()
     const encodedQuery = encodeURI(props.query)
     navigate(`/search?q=${encodedQuery}`)
+    props.search()
   }
 
 
