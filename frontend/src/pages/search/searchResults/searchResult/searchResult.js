@@ -13,8 +13,8 @@ export function SearchResult(props) {
                 <p className={classes.searchResultPostText}>{props.post.mainText}</p>
             </div>
             <div className={classes.searchResultInfo}>
-                <Typography variant="body2" >By Author Name at Post Date and Time</Typography>                
-                <Typography variant="body2">Category: ""</Typography>
+                <Typography variant="body2" >By {props.post.creatorID} at Unknown Time</Typography>                
+                <Typography variant="body2">Category: {props.post.category}</Typography>
                 <Chip label="Tag1" />
                 <Chip label="Tag2" />
             </div>
