@@ -33,7 +33,7 @@ export default function Posts(props) {
     if (postView === "drafts") {
       return (
         props.posts.filter(post => post.draft === true).map((post) => (
-          <Grid key={post.id} item xs={12} sm={7}>
+          <Grid key={post._id} item xs={12} sm={7}>
             <Post post={post} updatePost={updatePost} deletePost={deletePost} currentUser={props.currentUser} />
           </Grid>
       ))   
@@ -41,7 +41,7 @@ export default function Posts(props) {
     } else if (postView === "unpublished") {
       return (
         props.posts.filter(post => post.unpublished === true).map((post) => (
-          <Grid key={post.id} item xs={12} sm={7}>
+          <Grid key={post._id} item xs={12} sm={7}>
             <Post post={post} updatePost={updatePost} deletePost={deletePost} currentUser={props.currentUser} />
           </Grid>
       ))
@@ -49,7 +49,7 @@ export default function Posts(props) {
     } else {
       return (
         props.posts.filter(post => post.draft === false && post.published === true).map((post) => (
-          <Grid key={post.id} item xs={12} sm={7}>
+          <Grid key={post._id} item xs={12} sm={7}>
             <Post post={post} updatePost={updatePost} deletePost={deletePost} currentUser={props.currentUser} />
           </Grid>
       ))
