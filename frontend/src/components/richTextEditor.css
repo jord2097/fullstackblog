@@ -1,0 +1,35 @@
+
+.editorClassName{
+background-color: rgb(208, 206, 206);
+margin-top: 10px;
+height: 200px;
+padding-left: 15px;
+
+}
+
+.toolbarClassName{
+    background-color:rgb(192, 246, 204);
+    
+    
+    
+    
+    
+}
+
+.submit{
+    background-color:rgb(85, 151, 84);
+    color: white;
+    align-items: right;
+    
+    font-size: 20px;
+    font-weight: bold;
+    
+    border-radius: 5px;
+    border-color: white;
+    
+}
+.editorButton{
+    text-align: right;
+
+    
+}

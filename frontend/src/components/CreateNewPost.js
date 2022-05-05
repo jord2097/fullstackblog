@@ -1,6 +1,6 @@
 import React from "react";
 import { Paper } from '@material-ui/core'
-
+import RichTextEditor from "./RichTextEditor";
 
 const CreateNewPost = (props) => {
   const submitHandler = (e) => {
@@ -54,8 +54,17 @@ switch (props.currentUser.user.role) {
             ></input>
             <br />
             <br />
+            <div>
+            <RichTextEditor/>
+            </div>
+
+            <br />
+            <br />
+            
+            {/* </div>
             <textarea // rich text editor here
               // onChange={props.savePostContentToState}
+              
               name="mainText"
               placeholder="Content"
               rows="8"
@@ -65,7 +74,9 @@ switch (props.currentUser.user.role) {
               
               // ref={props.getContent}
               
-            ></textarea>
+            > </textarea > */}
+            
+            
             <br />
             <br />
             <input type="text" name="img" placeholder="Image URL" defaultValue={props.current?.img}
@@ -108,6 +119,8 @@ switch (props.currentUser.user.role) {
               />
             </Paper>            
             <p>
+
+            
             How to create a blog website using React.js. Blog app React project from scratch for beginners. Design React blog app using functional React components and React Router Dom.
             </p>
     </div>

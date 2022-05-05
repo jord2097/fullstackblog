@@ -26,7 +26,7 @@ export default function TopBar(props) {
         <i className="topIcon fab fa-twitter-square"></i>
       </Toolbar>      
       <Link to="/" className={classes.appbarText}>HOME</Link>
-      <Link to="#" className={classes.appbarText}>ADD</Link>
+      <Link to="/add" className={classes.appbarText}>ADD</Link>
       <Link to="#" className={classes.appbarFinalText}>ABOUT</Link>
       <form onSubmit={searchSubmit} className={classes.searchBar}>
         <TextField edge="end" style={{backgroundColor: "#FFFFFF"}} name="search" variant="outlined" label="search" onChange={(e) => props.cQuery(e.target.value)}/>
