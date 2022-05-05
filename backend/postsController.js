@@ -14,8 +14,8 @@ exports.create = async function (req,res,next){
     if(!req.body.title || !req.body.mainText){
         return (next(createError(400, "missing title and/or main text")))
     }
-    const postCreator = await User.findOne({token: req.headers.authorization})
-    const creatorID = postCreator._id
+    const postCreator = await User.findOne({_id: req.auth.sub})
+    const creatorID = postCreator.displayName
     
 
     const post = new Post({
@@ -24,7 +24,7 @@ exports.create = async function (req,res,next){
         img: req.body.img,
         category: req.body.category,
         tags: req.body.tags,
-        creatorID: creatorID        
+        creatorID: creatorID       
     })
 
     post.save()
@@ -43,16 +43,17 @@ exports.update = function (req,res,next){
         if(req.body.category) {post.category = req.body.category}
         if(req.body.tags) {post.tags = req.body.tags}        
         (req.body.draft) ? post.draft = true : post.draft = false
-        if (req.body.draft) {
+        if (req.body.draft === "true") {
             post.draft = true
-        } else {
+        } else if (req.body.draft === "false") {
             post.draft = false
         }
-        if (req.body.published) {
+        if (req.body.published === "true") {
             post.published = true
-        } else {
+        } else if (req.body.published === "false") {
             post.published = false
-        }   
+        }
+        if (req.body.creatorID) {post.creatorID = req.body.creatorID}   
 
         post.save()
             .then( () => res.send ({message: "Post Updated Successfully!"}))
@@ -96,7 +97,23 @@ exports.searchTags = async function (req, res, next){
     res.send(tagMatches)
 } // searches for tag within string using regex
 
-// general searchbar function
+exports.search = async function (req, res, next){
+    let data = await Post.find(
+        {
+            "$or":[
+                {title:{"$regex": req.query.q, "$options": "gi"}},
+                {mainText:{"$regex": req.query.q, "$options": "gi"}},
+                {category:{"$regex": req.query.q, "$options": "gi"}},
+                {tags:{"$regex": req.query.q, "$options": "gi"}}
+            ], // looks within the specified fields for all valid posts for the query (case-insensitive)
+            "$and":[
+                {draft: false},
+                {published: true}
+            ] // ensures only public posts are included in the search
+        }
+    )    
+    res.send(data)
+}
 
 exports.showDrafts = async function (req, res, next){
     const currentDrafts = await Post.find({draft: true})
