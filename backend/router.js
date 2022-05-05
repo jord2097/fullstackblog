@@ -15,6 +15,7 @@ router.put('/posts/:id', authorize([Role.author, Role.admin]), posts.update) // 
 router.delete('/posts/:id',  authorize(Role.admin), posts.delete) // delete post
 router.get('/search/category', posts.searchCategory) // search posts doesnt require authorisation
 router.get('/search/tags', posts.searchTags)
+router.get('/search', posts.search)
 router.get('/posts/drafts',  authorize([Role.author, Role.admin]), posts.showDrafts) // show draft posts
 router.get('posts/unpublished',  authorize([Role.author, Role.admin]), posts.showUnpublished) // show unpublished posts
 router.delete('/posts/deleteall/:confirm',  authorize(Role.admin), posts.deleteAll) // delete all, not used in frontend

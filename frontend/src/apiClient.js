@@ -52,15 +52,13 @@ export class apiClient {
 
     createPost(title, mainText, img, category, tags, draft, published) {
         return this.authenticatedCall("post", `${url}/posts/create`, { title, mainText, img, category, tags, draft, published }, authHeader)
-    }
-
-    
+    }    
 
     updatePost(_id, title, mainText, img, category, tags, draft, published) {
         return this.authenticatedCall("put", `${url}/posts/${_id}`, { title, mainText, img, category, tags, draft, published })
     }    
 
-    deletePost(_id) {
+    deletePost(_id) {        
         return this.authenticatedCall("delete", `${url}/posts/${_id}`)
     }    
 
@@ -104,5 +102,8 @@ export class apiClient {
         return this.authenticatedCall("get", `${url}/posts/unpublished`)
     }
     
+    searchbar(query) {
+        return this.authenticatedCall("get", `${url}/search?q=${query}`)
+    }
 
 }
