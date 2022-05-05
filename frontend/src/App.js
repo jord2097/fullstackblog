@@ -18,6 +18,14 @@ function App() {
   let location = useLocation()
   const params = new URLSearchParams(location.search)
   const queryParam = params.get('q')
+
+  window.onload = function () {
+    if (localStorage.getItem("hasCodeRunBefore") === null) {
+      localStorage.setItem("currentUser", "{}")
+      localStorage.setItem("hasCodeRunBefore", true)
+      window.location.reload()
+    }
+  }
   
   const loggedIn = () => {
     cCurrentUser(authService.currentUserValue)
