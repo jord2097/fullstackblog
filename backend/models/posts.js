@@ -8,7 +8,9 @@ const postSchema = mongoose.Schema({
     tags: String,
     creatorID: String,
     draft: {type: Boolean, default: false},
-    published: {type: Boolean, default: true}
+    published: {type: Boolean, default: true},
+    creationTime: { type: Date, default: () => new Date() }
+    
 })
 
 module.exports.Post = mongoose.model('posts', postSchema, 'posts' )

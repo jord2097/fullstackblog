@@ -1,7 +1,13 @@
 import './post.css';
+import {Chip} from '@material-ui/core'
+import {formatDate} from '../../_services/date-format'
 
 
 export default function Post(props) { 
+  const separatedTags = props.post.tags?.split(',')
+    const trimmedTags = separatedTags?.map(tag => {
+        return tag.trim()
+    })   
 
   function renderButtons() {
     if (props.currentUser.user){
@@ -38,7 +44,7 @@ export default function Post(props) {
 
         <div className="postInfo"></div>
             <div className="postCats">
-                <span className="postCat">{props.post.tags}</span>
+                <span className="postCat">{props.post.category}</span>
                   
             </div>
             <span className="postTitle"> {props.post.title} </span>
@@ -49,7 +55,9 @@ export default function Post(props) {
             {/* hr adds line */}
 
             
-            <span className="postDate"> Date Unknown </span>
+            <span className="postDate"> {props.post.creationTime ? formatDate(props.post.creationTime) : "Unknown Date"} </span>            
+            <Chip label={trimmedTags[0]} />
+            <Chip label={trimmedTags[1]} />     
             <p className='postDesc'>
          {props.post.mainText}
 

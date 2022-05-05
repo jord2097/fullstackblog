@@ -1,8 +1,15 @@
 import React from 'react';
 import useStyles from '../../../../styles'
 import {Typography, Chip} from '@material-ui/core'
+import {formatDate} from '../../../../_services/date-format'
 
 export function SearchResult(props) {
+    const separatedTags = props.post.tags?.split(',')
+    const trimmedTags = separatedTags?.map(tag => {
+        return tag.trim()
+    })   
+
+
     const classes = useStyles()
     return (
         <div className={classes.searchResult}>
@@ -13,10 +20,10 @@ export function SearchResult(props) {
                 <p className={classes.searchResultPostText}>{props.post.mainText}</p>
             </div>
             <div className={classes.searchResultInfo}>
-                <Typography variant="body2" >By {props.post.creatorID} at Unknown Time</Typography>                
+                <Typography variant="body2" >By {props.post.creatorID} at {props.post.creationTime ? formatDate(props.post.creationTime) : "Unknown Date"}</Typography>                
                 <Typography variant="body2">Category: {props.post.category}</Typography>
-                <Chip label="Tag1" />
-                <Chip label="Tag2" />
+                <Chip label={trimmedTags[0]} />
+                <Chip label={trimmedTags[1]} />            
             </div>
         </div>
     )
