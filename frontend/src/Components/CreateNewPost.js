@@ -1,4 +1,5 @@
 import React from "react";
+import RichTextEditor from "./richTextEditor";
 
 const CreateNewPost = (props) => {
   const submitHandler = (e) => {
@@ -47,21 +48,10 @@ const CreateNewPost = (props) => {
           ></input>
           <br />
           <br />
-          <textarea
-            // onChange={props.savePostContentToState}
-            name="mainText"
-            placeholder="Content"
-            rows="8"
-            cols="41"
-            required
-            defaultValue={props.current?.mainText}
-            
-            // ref={props.getContent}
-            
-          ></textarea>
+          <RichTextEditor />
           <br />
           <br />
-          <input type="text" name="img" placeholder="Image URL" defaultValue={props.current?.img}
+          <input type="text" name="img" placeholder="Cover Image URL" defaultValue={props.current?.img}
             ></input>
           <br />
           <input type="text" name="category" placeholder="Category" defaultValue={props.current?.category}

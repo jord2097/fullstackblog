@@ -8,6 +8,10 @@
   margin-top: 50px;
 }
 
+.editorClassName{
+  background-color: lavender;
+}
+
 .App-logo {
   height: 5vmin;
   pointer-events: none;

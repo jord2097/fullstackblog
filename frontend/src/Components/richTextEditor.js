@@ -29,6 +29,7 @@ export default class RichTextEditor extends Component {
                     wrapperClassName="wrapperClassName"
                     editorClassName="editorClassName"
                     onEditorStateChange={this.onEditorStateChange}
+                    placeholder="Content"
                 />
 
                 <button onSubmit={draftToHtml(convertToRaw(editorState.getCurrentContent()))}>Submit Editor Text</button>
