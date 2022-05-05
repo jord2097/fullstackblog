@@ -4,6 +4,7 @@ import { EditorState, convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html"
 import htmlToDraft from "html-to-draftjs"
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import './richTextEditor.css'
 
 export default class RichTextEditor extends Component {
 
@@ -22,7 +23,8 @@ export default class RichTextEditor extends Component {
         console.log(draftToHtml(convertToRaw(editorState.getCurrentContent())));
 
         return (
-            <div>
+            <div className="textEditor">
+                <div>
                 <Editor
                     editorState={editorState}
                     toolbarClassName="toolbarClassName"
@@ -30,8 +32,16 @@ export default class RichTextEditor extends Component {
                     editorClassName="editorClassName"
                     onEditorStateChange={this.onEditorStateChange}
                 />
+                </div>
+                
+                
+                
+                {/* <div className="editorButton">
 
-                <button onSubmit={draftToHtml(convertToRaw(editorState.getCurrentContent()))}>Submit Editor Text</button>
+                <button className='submit'onSubmit={draftToHtml(convertToRaw(editorState.getCurrentContent()))}>Submit</button>
+
+                </div> */}
+              
             </div>
         )
     }

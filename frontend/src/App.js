@@ -7,6 +7,7 @@ import { authService } from './_services/auth-service'
 import useStyles from './styles'
 import {Route, Routes, useLocation } from 'react-router-dom'
 import {Search} from './pages/search/search'
+import CreateNewPost from "./components/CreateNewPost"
 
 function App() {
   const [posts, cPosts] = useState([]);
@@ -22,7 +23,7 @@ function App() {
     cCurrentUser(authService.currentUserValue)
   }
   
-  const clientToken = currentUser.token 
+  const clientToken = currentUser?.token 
  
   const client = new apiClient(
     clientToken    
@@ -46,8 +47,12 @@ function App() {
   }, [location]);
  
   return (
+    
+
+   
     <Container maxWidth="lg">
       <TopBar query={query} cQuery={cQuery} search={search} />
+     
       <Container>
         <div className={classes.toolbar}></div>
         <Routes>          
@@ -60,11 +65,19 @@ function App() {
           current={current}
           cCurrent={cCurrent}          
           currentUser={currentUser}
-          loggedIn={loggedIn} />} />         
+          loggedIn={loggedIn} />} /> 
+          <Route path='/add' element={<CreateNewPost client={client} refreshList={refreshList} current={current} cCurrent={cCurrent} currentUser={currentUser}/>}></Route>        
         </Routes>
+
         
       </Container>
+
+      
+      
     </Container>
+
+
+     
   );
 }
 export default App;
