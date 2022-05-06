@@ -10,6 +10,11 @@ exports.index = async function (req,res){
     .then((posts) => res.send(posts))
 }
 
+exports.indexOne = async function(req,res){
+    Post.findOne({_id: ObjectId(req.params.id)})
+    .then((post) => res.send(post) )
+}
+
 exports.create = async function (req,res,next){
     if(!req.body.title || !req.body.mainText){
         return (next(createError(400, "missing title and/or main text")))

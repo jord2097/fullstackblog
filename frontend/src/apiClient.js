@@ -48,7 +48,11 @@ export class apiClient {
 
     async getPosts() {
         return await this.apiCall("get", `${url}/posts`)
-    }   
+    }
+    
+    async getSinglePost(postID) {
+        return await this.apiCall("get", `${url}/posts/${postID}`)
+    }
 
     createPost(title, mainText, img, category, tags, draft, published) {
         return this.authenticatedCall("post", `${url}/posts/create`, { title, mainText, img, category, tags, draft, published }, authHeader)

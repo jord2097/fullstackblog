@@ -1,9 +1,11 @@
 import './post.css';
 import {Chip} from '@material-ui/core'
 import {formatDate} from '../../_services/date-format'
+import {Link} from 'react-router-dom'
 
 
 export default function Post(props) { 
+  const regexHTML = /\n/g // identifies newlines
   const separatedTags = props.post.tags?.split(',')
     const trimmedTags = separatedTags?.map(tag => {
         return tag.trim()
@@ -44,10 +46,12 @@ export default function Post(props) {
 
         <div className="postInfo"></div>
             <div className="postCats">
-                <span className="postCat">{props.post.category}</span>
-                  
+                <span className="postCat">{props.post.category}</span>                  
             </div>
-            <span className="postTitle"> {props.post.title} </span>
+            <Link to={`/posts/${props.post._id}`}>
+              <span className="postTitle"> {props.post.title} </span>
+            </Link>
+            
             <br />            
             {renderButtons()}
             
@@ -58,10 +62,10 @@ export default function Post(props) {
             <span className="postDate"> {props.post.creationTime ? formatDate(props.post.creationTime) : "Unknown Date"} </span>            
             <Chip label={trimmedTags[0]} />
             <Chip label={trimmedTags[1]} />     
-            <p className='postDesc'>
-         {props.post.mainText}
+            <div className='postDesc' dangerouslySetInnerHTML={{__html: props.post.mainText.replace(regexHTML,"<br />")}}/>
+          
 
-            </p>
+            
 
      </div>
      
