@@ -4,6 +4,7 @@ import {Typography, Chip} from '@material-ui/core'
 import {formatDate} from '../../../../_services/date-format'
 
 export function SearchResult(props) {
+    const regexHTML = /\n/g // identifies newlines
     const separatedTags = props.post.tags?.split(',')
     const trimmedTags = separatedTags?.map(tag => {
         return tag.trim()
@@ -17,7 +18,7 @@ export function SearchResult(props) {
             <div className={classes.searchResultContent}>
                 <Typography variant="h6">{props.post.title}</Typography>           
                 <hr />
-                <p className={classes.searchResultPostText}>{props.post.mainText}</p>
+                <p className={classes.searchResultPostText} dangerouslySetInnerHTML={{__html: props.post.mainText.replace(regexHTML,"<br />")}} ></p>
             </div>
             <div className={classes.searchResultInfo}>
                 <Typography variant="body2" >By {props.post.creatorID} at {props.post.creationTime ? formatDate(props.post.creationTime) : "Unknown Date"}</Typography>                

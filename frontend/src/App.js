@@ -8,6 +8,7 @@ import useStyles from './styles'
 import {Route, Routes, useLocation } from 'react-router-dom'
 import {Search} from './pages/search/search'
 import CreateNewPost from "./components/CreateNewPost"
+import SinglePost from './pages/single/single'
 
 function App() {
   const [posts, cPosts] = useState([]);
@@ -74,7 +75,8 @@ function App() {
           cCurrent={cCurrent}          
           currentUser={currentUser}
           loggedIn={loggedIn} />} /> 
-          <Route path='/add' element={<CreateNewPost client={client} refreshList={refreshList} current={current} cCurrent={cCurrent} currentUser={currentUser}/>}></Route>        
+          <Route path='/add' element={<CreateNewPost client={client} refreshList={refreshList} current={current} cCurrent={cCurrent} currentUser={currentUser}/>}></Route>
+          <Route path="/posts/:postId" element={<SinglePost client={client} currentUser={currentUser} />} />
         </Routes>
 
         
