@@ -1,28 +1,33 @@
 import './sidebar.css';
-import Add from '../CreateNewPost.js'
-import Login from '../../pages/login/Login'
-import { Grid } from '@material-ui/core'
-import { authService } from '../../_services/auth-service'
+import { Grid, Paper } from '@material-ui/core'
 
 export default function Sidebar(props) {
-  const logout = () => {
-    authService.logout()
-    props.loggedIn()
-  }
+  
 
 
   return (
     <Grid item xs={12} sm={4}>
         
-        {props.currentUser.token ? (
-          <>
-          <button onClick={logout} >logout</button>
-          <Add client={props.client} refreshList={props.refreshList} current={props.current} cCurrent={props.cCurrent} currentUser={props.currentUser}/>
+        
+          <>          
+          <div className="sidebarItem">
+            <span className='sidebarTitle'>About The Developer Academy</span>
+            <Paper>
+              <img 
+            src='https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2016/03/fall-trees-road-1.jpg'
+            alt='haha'
+            style={{width:"100%",height:"fit-content"}}
+              />
+            </Paper>            
+            <p>
+
+            
+            How to create a blog website using React.js. Blog app React project from scratch for beginners. Design React blog app using functional React components and React Router Dom.
+            </p>
+    </div>
           
           </>
-        ) : (
-          <Login client={props.client} loggedIn={props.loggedIn}/>
-        )}
+        
         
     </Grid>
     
