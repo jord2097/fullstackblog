@@ -9,6 +9,7 @@ import {Route, Routes, useLocation } from 'react-router-dom'
 import {Search} from './pages/search/search'
 import CreateNewPost from "./components/CreateNewPost"
 import SinglePost from './pages/single/single'
+import Login from "./pages/login/Login"
 
 function App() {
   const [posts, cPosts] = useState([]);
@@ -60,7 +61,7 @@ function App() {
 
    
     <Container maxWidth="lg">
-      <TopBar query={query} cQuery={cQuery} search={search} />
+      <TopBar query={query} cQuery={cQuery} search={search} currentUser={currentUser} loggedIn={loggedIn} />
      
       <Container>
         <div className={classes.toolbar}></div>
@@ -77,6 +78,7 @@ function App() {
           loggedIn={loggedIn} />} /> 
           <Route path='/add' element={<CreateNewPost client={client} refreshList={refreshList} current={current} cCurrent={cCurrent} currentUser={currentUser}/>}></Route>
           <Route path="/posts/:postId" element={<SinglePost client={client} currentUser={currentUser} />} />
+          <Route path="/login" element={<Login client={client} loggedIn={loggedIn}/>} />
         </Routes>
 
         
