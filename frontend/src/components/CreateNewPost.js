@@ -6,9 +6,11 @@ import draftToHtml from "draftjs-to-html"
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import './richTextEditor.css'
 import {stateFromHTML} from 'draft-js-import-html'
+import { useNavigate } from "react-router-dom";
 
 const CreateNewPost = (props) => {
   const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
+  const navigation = useNavigate()
 
   useEffect(() => {
     if (props.current) {
@@ -20,9 +22,10 @@ const CreateNewPost = (props) => {
   const submitHandler = (e) => {
     e.preventDefault();
     const stringFromHtml = draftToHtml(convertToRaw(editorState.getCurrentContent())) 
-     
+    console.log(e.target.published.checked)
     let result;
     if (props.current) {
+      
       result = props.client.updatePost(
         props.current._id,
         e.target.title.value,
@@ -48,6 +51,7 @@ const CreateNewPost = (props) => {
     .then(() =>{
       document.getElementById("postForm").reset()
       props.refreshList()
+      navigation('/')
     })    
   };
 
@@ -91,7 +95,7 @@ const CreateNewPost = (props) => {
             <input
               type="text"
               name="tags"
-              placeholder="Tags (comma separated)"
+              placeholder="Tags (comma separated, up to 3)"
               defaultValue={props.current?.tags}           
               
             ></input>
@@ -99,7 +103,7 @@ const CreateNewPost = (props) => {
             <input
             type="checkbox"
             name="draft"      
-            defaultValue={props.current?.draft}
+            defaultChecked={props.current?.draft}
 
             ></input>
             <label htmlFor="draft">Mark as draft?</label>
@@ -108,7 +112,7 @@ const CreateNewPost = (props) => {
             type="checkbox"
             name="published"
             
-            defaultValue={props.current?.published}
+            defaultChecked={props.current?.published}
             ></input> 
             <label htmlFor="published">Publish post?</label>
             <section className="button-wrapper">

@@ -50,12 +50,12 @@ exports.update = function (req,res,next){
         (req.body.draft) ? post.draft = true : post.draft = false
         if (req.body.draft === "true") {
             post.draft = true
-        } else if (req.body.draft === "false") {
+        } else if (req.body.draft === false) {
             post.draft = false
         }
-        if (req.body.published === "true") {
+        if (req.body.published === true) {
             post.published = true
-        } else if (req.body.published === "false") {
+        } else if (req.body.published === false) {
             post.published = false
         }
         if (req.body.creatorID) {post.creatorID = req.body.creatorID}   
