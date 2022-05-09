@@ -1,0 +1,46 @@
+.registerContainer{
+   
+    display: flex;
+    padding: 27px;
+}
+.rightbar, .leftbar {
+    flex:3;
+   
+}
+r.egisterPageContents{
+    margin: 5px, 5px, 5px, 5px;
+    background-color: blue;
+}
+.formContainer{
+    background-image: linear-gradient(#ffffff,
+    #a5c6e3);
+    padding: 15px;
+    box-shadow: 5px 5px 10px black ;
+}
+
+/* .formContents */
+.loginInput{
+    display: flex;
+}
+.createAccountButton{
+    color: white;
+    background-color: teal;
+    border-radius: 10px;
+    padding: 5px;
+}
+.CreateAccountContainer{
+    text-align: end;
+    padding-right: 30px;
+}
+.login{
+    color: white;
+    background-color: teal;
+    align-items: center;
+    border-radius: 10px;
+    padding: 5px;
+}
+.loginContainer{
+    text-align: end;
+    padding-top: 20px;
+    padding-right: 20px;
+}

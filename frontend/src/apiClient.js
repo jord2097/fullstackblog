@@ -1,29 +1,34 @@
 import axios from 'axios';
-const url = 'http:localhost:3000' // URL for the API server
+import { authHeader } from './_services/auth-header'
+import { handleResponse } from './_services/handle-response'
+import { authService } from './_services/auth-service'
+const url = 'http://localhost:3000' // URL for the API server
 
 export class apiClient {
-    constructor(token) {
-        this.token = token
+    constructor(clientToken) {
+        this.token = clientToken        
     }
 
+    
+   
     apiCall(method,url,data) {
         return axios({
             method,
-            url,
-            data,
+            url,            
+            data
         }).catch((error) => {
             throw error
         })
     }
 
-    authenticatedCall(method,url,data) {
+    authenticatedCall(method,url,data, headers) {
         return axios({
-            method,
-            url,
-            headers: {
-                authorization: this.token
-            },
+            method,                     
+            url,            
             data,
+            headers: {
+                Authorization: "Bearer " + this.token
+            }                       
         }).catch((error) => {
             throw error
         })
@@ -36,31 +41,39 @@ export class apiClient {
     }
 
     async login(username, password) {
-        return await this.apiCall("post", `${url}/login`, { username, password })
+        return authService.login(username, password)
     }
 
-    // basic post operations
+    // basic post operations    
 
-    getPosts() {
-        return this.apiCall("get", `${url}/posts`)
+    async getPosts() {
+        return await this.apiCall("get", `${url}/posts`)
+    }
+    
+    async getSinglePost(postID) {
+        return await this.apiCall("get", `${url}/posts/${postID}`)
     }
 
     createPost(title, mainText, img, category, tags, draft, published) {
-        return this.authenticatedCall("post", `${url}/posts/create`, { title, mainText, img, category, tags, draft, published })
-    }
+        return this.authenticatedCall("post", `${url}/posts/create`, { title, mainText, img, category, tags, draft, published }, authHeader)
+    }    
 
     updatePost(_id, title, mainText, img, category, tags, draft, published) {
         return this.authenticatedCall("put", `${url}/posts/${_id}`, { title, mainText, img, category, tags, draft, published })
-    }
+    }    
 
-    deletePost(_id) {
+    deletePost(_id) {        
         return this.authenticatedCall("delete", `${url}/posts/${_id}`)
-    }
+    }    
 
     // basic user operations
 
     getUsers() {
         return this.apiCall("get", `${url}/users`)
+    }
+
+    getUser(token) {
+        return this.apiCall("get", `${url}/user`, { token })
     }
 
     addUser(username, password, displayName, email) {
@@ -91,6 +104,10 @@ export class apiClient {
 
     showUnpublished() {
         return this.authenticatedCall("get", `${url}/posts/unpublished`)
+    }
+    
+    searchbar(query) {
+        return this.authenticatedCall("get", `${url}/search?q=${query}`)
     }
 
 }
