@@ -9,10 +9,13 @@ export default function Home(props) {
 
     <>
         <Header/>
-      <Container maxWidth="lg">
-        <Grow in>
+      
+        
           <Grid container justify="space-between" alignItems="stretch" spacing={3}>
-            <Posts client={props.client} refreshList={props.refreshList} posts={props.posts} cPosts={props.cPosts} current={props.current} cCurrent={props.cCurrent} currentUser={props.currentUser} />        
+            <Grid item xs={12} sm={7}>
+            <Posts client={props.client} refreshList={props.refreshList} posts={props.posts} cPosts={props.cPosts} current={props.current} cCurrent={props.cCurrent} currentUser={props.currentUser} />
+            </Grid>
+            <Grid item xs={12} sm={4}>      
             <Sidebar client={props.client} refreshList={() => {
             props.refreshList()
             props.cCurrent(undefined)
@@ -22,9 +25,10 @@ export default function Home(props) {
             currentUser={props.currentUser}
             loggedIn={props.loggedIn} 
             />
+            </Grid> 
           </Grid>
-        </Grow>
-      </Container>
+        
+      
     </>
   )
 }

@@ -1,8 +1,12 @@
 import "./topbar.css"
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import { useNavigate, Link } from 'react-router-dom'
 import { AppBar, TextField, Toolbar, Typography, Button } from '@material-ui/core'
-import useStyles from '../../styles'
+import useStyles from './styles'
 import { authService } from '../../_services/auth-service'
+import { Navbar, Container, Nav, NavDropdown, Form, FormControl} from 'react-bootstrap'
+
 
 export default function TopBar(props) {
   let navigate = useNavigate()
@@ -27,21 +31,22 @@ export default function TopBar(props) {
         return (
           <>
           
-          <Link to="/add" className={classes.appbarFinalText}>ADD</Link>
-          <Button variant="contained" onClick={logout}>LOGOUT</Button>
+          <Nav.Link href="/add">Add</Nav.Link>    
+          <Nav.Link variant="contained" onClick={logout}>Logout</Nav.Link>
           
           </>
         )
       } else {
         return (
-          <Button variant="contained" onClick={logout}>LOGOUT</Button>
+          <Button variant="contained" onClick={logout}>Logout</Button>
         )
         }      
     } else {
-      return (
-        <>
+      return (        
+      <>
         
-        <Link to='/login' className={classes.appbarFinalText}>LOGIN/REGISTER</Link>
+        
+        <Nav.Link href="/login">Login/Register</Nav.Link>    
         
         </>
       )
@@ -49,11 +54,38 @@ export default function TopBar(props) {
     } 
   }
 
-
-
   return (
-    <AppBar>
-    <Toolbar>
+    <Navbar bg="light" expand="lg" className="navContainer">
+  <Container fluid >
+    <Navbar.Brand href="#">The Developer Academy</Navbar.Brand>
+    <Navbar.Toggle aria-controls="navbarScroll" />
+    <Navbar.Collapse id="navbarScroll">
+      <Nav
+        className="me-auto my-2 my-lg-0"
+        style={{ maxHeight: '100px' }}
+        navbarScroll
+      >
+        <Nav.Link href="/">Home</Nav.Link>
+              
+        {authorizedView()}
+      </Nav>
+      <Form className="d-flex" onSubmit={searchSubmit}>
+        <FormControl
+          type="search"
+          placeholder="Search"
+          className="me-2"
+          aria-label="Search"
+        />
+        <Button variant="outlined" onClick="searchSubmit">        
+        <i className="topSearchIcon fas fa-search"></i>        
+        </Button>
+      </Form>
+    </Navbar.Collapse>
+  </Container>
+</Navbar>
+  // MUI AppBar
+    /* <AppBar>
+    <Toolbar className="appbarRoot">
       <Toolbar edge="start">
         <i className="topIcon fab fa-facebook-square"></i>
         <i className="topIcon fab fa-instagram-square"></i>
@@ -78,7 +110,7 @@ export default function TopBar(props) {
 
 
 
-    </AppBar>
+    </AppBar> */ 
   )
   
 }

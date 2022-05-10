@@ -61,11 +61,8 @@ function App() {
 
    
     <Container maxWidth="lg">
-      <TopBar query={query} cQuery={cQuery} search={search} currentUser={currentUser} loggedIn={loggedIn} />
-     
-      <Container>
-        <div className={classes.toolbar}></div>
-        
+        <TopBar query={query} cQuery={cQuery} search={search} currentUser={currentUser} loggedIn={loggedIn} />
+        {/* <div className={classes.toolbar}></div>         */}
         <Routes>          
           <Route path="/search" element={<Search client={client} posts={posts} cPosts={cPosts} />} />
           <Route path="/" element={<Home
@@ -84,7 +81,7 @@ function App() {
         </Routes>
 
         
-      </Container>
+      
 
       
       
