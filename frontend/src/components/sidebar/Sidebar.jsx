@@ -12,7 +12,7 @@ export default function Sidebar(props) {
 
 
   return (
-    <Grid item xs={12} sm={4}>
+    <Grid  className ='log'>
         
         {props.currentUser.token ? (
           <>

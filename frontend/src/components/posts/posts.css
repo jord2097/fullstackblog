@@ -1,13 +1,13 @@
 .posts{
- flex:10;   
+ flex:8;   
  display:flex;
  flex-wrap: wrap;
- /* justify-content:space-around;  */
+ background-color: brown;
+ padding-right:0px;
 
- /* this above line will make your posts appear side by side is their size can fit the container.
- otherwise they will appear on top of each other */
-  margin: 10px; 
+   
 }
 .postFilters{
   margin-bottom: 10px;
+  
 }

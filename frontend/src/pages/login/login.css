@@ -3,13 +3,20 @@
 } */
 .loginPage{
     display: flex;
-    margin-top: 200px;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 100px;
+    color: rgb(15, 15, 15);
+   
+    padding: 2px;
+    width: 100%;
+    
     
     
    
 }
 .loginPageText{
-    flex: 6;
+    width: 100%;
     
     box-shadow:0 4px 8px 0 rgba(39, 200, 34, 0.2), 0 6px 20px 0 rgba(52, 237, 6, 0.138);
 }
@@ -30,13 +37,11 @@
 .form{
     
     margin-top: 10%;
-    display:flex
+    
 }
-.loginPageText{
-    margin-top: 1%;
-    margin-bottom: 1%;
-}
+
 .loginInput{
-    margin: 4%;
+    margin: 4px;
+    padding-right: 3px;
 }
 

@@ -1,10 +1,12 @@
 .post {
-  width: 385px;
-  margin-top: 0px 20px 40px 25px;
-  margin-bottom: 40px
+  width: 100%;
+  margin-top:25px;
+  margin-bottom: 40px;
+  background-color: aquamarine;
+  
 }
 .postImg {
-  width: 110%;  
+  width: 100%;  
   object-fit: cover;
   border-radius: 7px;
 }
