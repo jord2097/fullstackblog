@@ -10,6 +10,11 @@ exports.index = async function (req,res){
     .then((posts) => res.send(posts))
 }
 
+exports.indexOne = async function(req,res){
+    Post.findOne({_id: ObjectId(req.params.id)})
+    .then((post) => res.send(post) )
+}
+
 exports.create = async function (req,res,next){
     if(!req.body.title || !req.body.mainText){
         return (next(createError(400, "missing title and/or main text")))
@@ -45,12 +50,12 @@ exports.update = function (req,res,next){
         (req.body.draft) ? post.draft = true : post.draft = false
         if (req.body.draft === "true") {
             post.draft = true
-        } else if (req.body.draft === "false") {
+        } else if (req.body.draft === false) {
             post.draft = false
         }
-        if (req.body.published === "true") {
+        if (req.body.published === true) {
             post.published = true
-        } else if (req.body.published === "false") {
+        } else if (req.body.published === false) {
             post.published = false
         }
         if (req.body.creatorID) {post.creatorID = req.body.creatorID}   
