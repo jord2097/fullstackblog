@@ -32,10 +32,18 @@ export default function TopBar(props) {
           
           </>
         )
-      }
+      } else {
+        return (
+          <Button variant="contained" onClick={logout}>LOGOUT</Button>
+        )
+        }      
     } else {
       return (
+        <>
+        
         <Link to='/login' className={classes.appbarFinalText}>LOGIN/REGISTER</Link>
+        
+        </>
       )
       
     } 

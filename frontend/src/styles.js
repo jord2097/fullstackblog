@@ -89,8 +89,8 @@ export default makeStyles((theme) => ({
     searchResultSpacer: {
         marginBottom: "10px"       
     },
-    searchResultLayout: {
-        
+    appBarFinalItem: {
+        flexGrow: 1
     }
     
 
