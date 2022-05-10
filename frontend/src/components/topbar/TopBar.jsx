@@ -65,8 +65,7 @@ export default function TopBar(props) {
         style={{ maxHeight: '100px' }}
         navbarScroll
       >
-        <Nav.Link href="/">Home</Nav.Link>
-              
+        <Nav.Link href="/">Home</Nav.Link>              
         {authorizedView()}
       </Nav>
       <Form className="d-flex" onSubmit={searchSubmit}>
@@ -99,17 +98,8 @@ export default function TopBar(props) {
       </form>
       <Button variant="contained" className={classes.searchBarButton} onClick={searchSubmit}>
         <i className="topSearchIcon fas fa-search"></i>
-      </Button>
-      
-
-      
+      </Button>      
     </Toolbar>
-    
-
-
-
-
-
     </AppBar> */ 
   )
   

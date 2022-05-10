@@ -54,6 +54,13 @@ export default makeStyles({
   },
   manageButtons: {
     padding: '0 16px'
+  },
+  card: {
+    borderRadius: '15px',
+    width: '100%',
+    marginTop:'25px',
+    marginBottom: '40px',
+    
+  
   }
-
 });

@@ -4,6 +4,8 @@ import {formatDate} from '../../_services/date-format'
 import {Link} from 'react-router-dom'
 import DOMpurify from 'dompurify'
 import useStyles from './styles';
+import NotesIcon from '@mui/icons-material/Notes';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 export default function Post(props) {
@@ -25,16 +27,23 @@ export default function Post(props) {
       if (props.currentUser.user.role === "author"){
         return (
           <>
-          <button onClick={() => props.updatePost(props.post)}>Update Post</button>
+          
+          <Button size="small" onClick={() => props.updatePost(props.post)}>
+          <NotesIcon />
+          </Button>
           
           </>
         )
       } else if (props.currentUser.user.role === "admin"){
         return (
           <div className={classes.manageButtons}>              
-              <button onClick={() => props.updatePost(props.post)}>Update Post</button>
-              <button onClick={() => props.deletePost(props.post._id)} >Delete Post</button>
-              
+            <Button size="small" onClick={() => props.updatePost(props.post)}><NotesIcon />
+              Update         
+            </Button>
+            
+            <Button size="small" onClick={() => props.deletePost(props.post._id)}><DeleteIcon />
+              Delete         
+            </Button>  
           </div>
         )
       } else return
@@ -45,32 +54,34 @@ export default function Post(props) {
 
   return (
       <>
-    <Card className='post'>
+    <Card className={classes.card}>
         <CardMedia
         className={classes.media}
         image={props.post.img}
         alt='Post Cover Relating To Theme'
         />        
         <div className="postInfo"></div>
-            <div className="postCats">
-                <span className="postCat">{props.post.category}</span>                  
-            </div>
-            <Link to={`/posts/${props.post._id}`}>
+        <div className="postCats">
+          <span className="postCat">{props.post.category}</span>                  
+        </div>
+        <Link to={`/posts/${props.post._id}`}>
               <span className="postTitle"> {props.post.title} </span>
-            </Link>            
-            <br />            
-            {renderButtons()}            
-            <hr/>
-            {/* hr adds line */}            
-            <span className="postDate"> By {props.post.creatorID} at {props.post.creationTime ? formatDate(props.post.creationTime) : "Unknown Date"} </span>
-            <br />            
-            <div className={classes.tags}>
-              {trimmedTags[0] ? <Chip label={trimmedTags[0]} /> : null}
-              {trimmedTags[1] ? <Chip label={trimmedTags[1]} /> : null}
-              {trimmedTags[2] ? <Chip label={trimmedTags[1]} /> : null}    
-            </div>            
-                         
-            <div className='postDesc' dangerouslySetInnerHTML={createMarkup(props.post.mainText)}/>
+        </Link>                
+        <hr/>
+        {/* hr adds line */}            
+        <span className="postDate"> By {props.post.creatorID} at {props.post.creationTime ? formatDate(props.post.creationTime) : "Unknown Date"} </span>
+        <br />            
+                             
+        <div className='postDesc' dangerouslySetInnerHTML={createMarkup(props.post.mainText)}/>
+        <div className={classes.tags}>
+          {trimmedTags[0] ? <Chip label={trimmedTags[0]} /> : null}
+          {trimmedTags[1] ? <Chip label={trimmedTags[1]} /> : null}
+          {trimmedTags[2] ? <Chip label={trimmedTags[1]} /> : null}    
+        </div>   
+        <CardActions>
+          {renderButtons()}
+        </CardActions>
+
            
           
 

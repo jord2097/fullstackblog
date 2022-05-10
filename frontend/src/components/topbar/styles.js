@@ -51,7 +51,8 @@ searchResultSpacer: {
 },
 searchBar: {
     paddingRight: "1rem"
-},
+}
+
 
 
 
