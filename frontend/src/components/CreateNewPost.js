@@ -1,6 +1,6 @@
 import React from "react";
 import { Paper } from '@material-ui/core'
-import RichTextEditor from "./RichTextEditor";
+import RichTextEditor from "./richTextEditor";
 
 const CreateNewPost = (props) => {
   const submitHandler = (e) => {

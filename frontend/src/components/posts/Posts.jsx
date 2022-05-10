@@ -2,10 +2,12 @@ import Post from '../post/Post';
 import './posts.css';
 import { Grid } from '@material-ui/core'
 import React, { useState } from 'react'
+import useStyles from './styles';
 
 
 export default function Posts(props) {
   const [postView, cPostView] = useState("default")
+  const classes = useStyles();  
 
   const updatePost = (_id) => {
     props.cCurrent(_id)
@@ -71,15 +73,15 @@ export default function Posts(props) {
           <br />
           <button onClick={showDefault}> Default</button>
         </div>
-        <div className='posts'>
+        <Grid className={classes.container} container alignItems="stretch" spacing={3}>
           {renderPosts()}   
-        </div>
+        </Grid>
         </>
       )
     default: return (
-      <div className='posts'>
+      <Grid className={classes.container} container alignItems="stretch" spacing={3}>
           {renderPosts()}   
-      </div>
+      </Grid>
     )
   }
   

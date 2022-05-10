@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Home from "./pages/home/Home";
 import TopBar from "./components/topbar/TopBar";
 import { apiClient } from "./apiClient.js";
-import { Container } from '@material-ui/core'
+import { Container, Grow } from '@material-ui/core'
 import { authService } from './_services/auth-service'
 import useStyles from './styles'
 import {Route, Routes, useLocation } from 'react-router-dom'
@@ -63,6 +63,7 @@ function App() {
      
       <Container>
         <div className={classes.toolbar}></div>
+        
         <Routes>          
           <Route path="/search" element={<Search client={client} posts={posts} cPosts={cPosts} />} />
           <Route path="/" element={<Home
@@ -75,8 +76,7 @@ function App() {
           currentUser={currentUser}
           loggedIn={loggedIn} />} /> 
           <Route path='/add' element={<CreateNewPost client={client} refreshList={refreshList} current={current} cCurrent={cCurrent} currentUser={currentUser}/>}></Route>        
-        </Routes>
-
+        </Routes>         
         
       </Container>
 
