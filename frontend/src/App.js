@@ -79,6 +79,7 @@ function App() {
           <Route path='/add' element={<CreateNewPost client={client} refreshList={refreshList} current={current} cCurrent={cCurrent} currentUser={currentUser}/>}></Route>
           <Route path="/posts/:postId" element={<SinglePost client={client} currentUser={currentUser} />} />
           <Route path="/login" element={<Login client={client} loggedIn={loggedIn}/>} />
+          <Route path="/view"></Route>
         </Routes>
 
         
