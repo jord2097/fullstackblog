@@ -3,14 +3,17 @@ import './posts.css';
 import { Grid } from '@material-ui/core'
 import React, { useState } from 'react'
 import useStyles from './styles';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Posts(props) {
   const [postView, cPostView] = useState("default")
   const classes = useStyles();  
+  const navigate = useNavigate()
 
   const updatePost = (_id) => {
     props.cCurrent(_id)
+    navigate('/add')
   }
 
   const deletePost = (_id) => {
@@ -42,7 +45,7 @@ export default function Posts(props) {
       )
     } else if (postView === "unpublished") {
       return (
-        props.posts.filter(post => post.unpublished === true).map((post) => (
+        props.posts.filter(post => post.published === false).map((post) => (
           <Grid key={post._id} item xs={12} sm={7}>
             <Post post={post} updatePost={updatePost} deletePost={deletePost} currentUser={props.currentUser} />
           </Grid>

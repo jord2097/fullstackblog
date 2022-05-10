@@ -10,6 +10,7 @@ const { token } = require('morgan')
 
 
 router.get('/posts', posts.index) // get all posts
+router.get('/posts/:id', posts.indexOne) // get by ID
 router.post('/posts/create',  authorize([Role.author, Role.admin]), posts.create) // create post
 router.put('/posts/:id', authorize([Role.author, Role.admin]), posts.update) // update post
 router.delete('/posts/:id',  authorize(Role.admin), posts.delete) // delete post

@@ -48,8 +48,8 @@
   margin-bottom: 2%;
   cursor: pointer;
 }
-.postDesc:hover {
+/* .postDesc:hover {
   overflow: visible;
   -webkit-line-clamp: unset;
 }
-
+ */
