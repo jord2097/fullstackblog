@@ -1,13 +1,23 @@
-.posts{
- flex:10;   
+/* .posts{
+ flex:8;   
  display:flex;
  flex-wrap: wrap;
- /* justify-content:space-around;  */
+ background-color: brown;
+ padding-right:0px;
 
- /* this above line will make your posts appear side by side is their size can fit the container.
- otherwise they will appear on top of each other */
-  margin: 10px; 
+   
 }
 .postFilters{
   margin-bottom: 10px;
+  
+} */
+
+.toolbarButtons {
+  background: #FDC830;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #F37335, #FDC830);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #F37335, #FDC830); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+  
+
 }

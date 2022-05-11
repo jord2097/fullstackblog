@@ -40,12 +40,6 @@ textarea {
   cursor: pointer;
   border: none;
 }
-.create-post,
-.modify-post {
-  width: 50%;
-  margin: 0 auto
-  /* margin-left: 40%; */
-}
 .all-post {
   width: 100vw;
   margin: 0 auto;
