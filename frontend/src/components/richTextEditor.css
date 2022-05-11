@@ -33,3 +33,9 @@ padding-left: 15px;
 
     
 }
+.create-post,
+.modify-post {
+    /* width: 50%; */
+    margin: 0 auto
+    /* margin-left: 40%; */
+  }
