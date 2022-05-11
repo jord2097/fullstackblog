@@ -1,6 +1,7 @@
 import './sidebar.css';
 import { Grid, Paper } from '@material-ui/core'
 import useStyles from './styles';
+import logo from '../../images/logo.png'
 
 export default function Sidebar(props) {
   const classes = useStyles()
@@ -9,20 +10,13 @@ export default function Sidebar(props) {
         
         
           <Paper className={classes.sidebar}>          
-          
-            <span className='sidebarTitle'>About The Developer Academy</span>
-            
-              <img 
-            src='https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2016/03/fall-trees-road-1.jpg'
-            alt='haha'
+            <img src={logo} 
             style={{width:"100%",height:"fit-content"}}
-              />
-                      
-            <p>
-
-            
-            How to create a blog website using React.js. Blog app React project from scratch for beginners. Design React blog app using functional React components and React Router Dom.
-            </p>
+            /> <hr/> 
+             <div className='sidebarTitle'>ABOUT US</div> <hr/> <hr/>      
+            <div className='TDA-Description'>
+            We train junior Software Developers and Data Analystis from anywhere with our Part Time, 24 week online bootcamps.Many people think tech companies are only interested in graduates with Computer Science degrees. This isn’t true. Tech companies are interested in your skills, not your qualifications. Other people think you need to be a mathematical genius. This isn’t true either. 
+            </div>
           
           </Paper>
         
