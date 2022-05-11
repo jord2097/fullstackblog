@@ -18,7 +18,7 @@ export function Search(props) {
         <div className={classes.container}>
             <div className={classes.searchSummary}>
                 <Typography variant="h6" >Search Results for "{query}"</Typography>
-                <Typography paragraph={true}>Showing 1-? out of ? Results</Typography>                
+                <Typography paragraph={true}>Showing {props.posts.length} Results</Typography>                
             </div>            
         </div>
         <SearchResults posts={props.posts} />
