@@ -25,13 +25,12 @@ export default function Post(props) {
     if (props.currentUser.user){
       if (props.currentUser.user.role === "author"){
         return (
-          <>
-          
-          <Button size="small" onClick={() => props.updatePost(props.post)}>
-          <NotesIcon />
+          <div className={classes.manageButtons}>          
+          <Button size="small" onClick={() => props.updatePost(props.post)}><NotesIcon />          
+            Update
           </Button>
           
-          </>
+          </div>
         )
       } else if (props.currentUser.user.role === "admin"){
         return (
