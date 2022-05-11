@@ -74,6 +74,7 @@ export default function TopBar(props) {
           placeholder="Search"
           className="me-2"
           aria-label="Search"
+          onChange={(e) => props.cQuery(e.target.value)}
         />
         <Button variant="outlined" onClick="searchSubmit">        
         <i className="topSearchIcon fas fa-search"></i>        
