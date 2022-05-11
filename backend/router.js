@@ -2,20 +2,20 @@ const express = require('express')
 const router = express.Router()
 const posts = require('./postsController')
 const users = require('./usersController')
-const { authorize, verifyJwt } = require('./auth')
+const { authorize, authorizeElevated } = require('./auth')
 const { canEditPost } = require('./permissions/posts') // checks if user is admin or original post creator
 const { ObjectId } = require('mongodb')
 const Role = require('./models/roles')
 const { token } = require('morgan')
 
 
-router.get('/posts', verifyJwt, posts.index) // get all posts
+router.get('/posts', authorizeElevated([Role.author, Role.admin]), posts.index) // get all posts
 router.get('/posts/:id', posts.indexOne) // get by ID
 router.post('/posts/create',  authorize([Role.author, Role.admin]), posts.create) // create post
 router.put('/posts/:id', authorize([Role.author, Role.admin]), posts.update) // update post
 router.delete('/posts/:id',  authorize(Role.admin), posts.delete) // delete post
-router.get('/search/category', posts.searchCategory) // search posts doesnt require authorisation
-router.get('/search/tags', posts.searchTags)
+router.get('/search/category', authorizeElevated([Role.author, Role.admin]),  posts.searchCategory) // search posts doesnt require authorisation
+router.get('/search/tags', authorizeElevated([Role.author, Role.admin]), posts.searchTags)
 router.get('/search', posts.search)
 router.get('/posts/drafts',  authorize([Role.author, Role.admin]), posts.showDrafts) // show draft posts
 router.get('posts/unpublished',  authorize([Role.author, Role.admin]), posts.showUnpublished) // show unpublished posts

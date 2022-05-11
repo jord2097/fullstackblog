@@ -36,10 +36,11 @@ export default function Posts(props) {
 
   const renderPosts = () => {
     if (postView === "drafts") {
+      console.log(props.posts)
       return (
         props.posts.filter(post => post.draft === true).map((post) => (
           <Grid key={post._id} item xs={12} sm={6} md={6}>
-            <Post post={post} updatePost={updatePost} deletePost={deletePost} currentUser={props.currentUser} />
+            <Post post={post} searchCat={props.searchCat} updatePost={updatePost} deletePost={deletePost} currentUser={props.currentUser} />
           </Grid>
       ))   
       )
@@ -47,7 +48,7 @@ export default function Posts(props) {
       return (
         props.posts.filter(post => post.published === false).map((post) => (
           <Grid key={post._id} item xs={12} sm={6} md={6}>
-            <Post post={post} updatePost={updatePost} deletePost={deletePost} currentUser={props.currentUser} />
+            <Post post={post} searchCat={props.searchCat} updatePost={updatePost} deletePost={deletePost} currentUser={props.currentUser} />
           </Grid>
       ))
       )
@@ -55,7 +56,7 @@ export default function Posts(props) {
       return (        
         props.posts.filter(post => post.draft === false && post.published === true).map((post) => (
           <Grid key={post._id} item xs={12} sm={6} md={6}>
-            <Post post={post} updatePost={updatePost} deletePost={deletePost} currentUser={props.currentUser} />
+            <Post post={post} searchCat={props.searchCat} updatePost={updatePost} deletePost={deletePost} currentUser={props.currentUser} />
           </Grid>
       ))
       )

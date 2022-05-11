@@ -6,16 +6,16 @@ const url = 'http://localhost:3000' // URL for the API server
 
 export class apiClient {
     constructor(clientToken) {
-        this.token = clientToken        
+        this.token = clientToken         
     }
 
     
    
-    apiCall(method,url,data) {
+    apiCall(method,url,data,headers) {
         return axios({
             method,
             url,            
-            data
+            data,            
         }).catch((error) => {
             throw error
         })
@@ -27,7 +27,7 @@ export class apiClient {
             url,            
             data,
             headers: {
-                Authorization: "Bearer " + this.token
+                Authorization: 'Bearer ' + this.token
             }                       
         }).catch((error) => {
             throw error
@@ -47,7 +47,13 @@ export class apiClient {
     // basic post operations    
 
     async getPosts() {
-        return await this.apiCall("get", `${url}/posts`)
+        if (this.token) {
+            return await this.authenticatedCall("get", `${url}/posts`)
+
+        } else {
+            return await this.apiCall("get", `${url}/posts`)
+
+        }
     }
     
     async getSinglePost(postID) {
@@ -91,11 +97,19 @@ export class apiClient {
     // extra features
 
     searchCategory(category) {
-        return this.apiCall("get", `${url}/search/category`, {category})        
+        if (this.token) {
+            return this.authenticatedCall("get", `${url}/search/category?c=${category}`)       
+        } else {
+            return this.apiCall("get", `${url}/search/category?c=${category}`)     
+        }
+           
     }
 
-    searchTags(tags) {
-        return this.apiCall("get", `${url}/search/tags`, {tags} )
+    searchTag(tag) {
+        if (this.token) {
+            return this.authenticatedCall("get", `${url}/search/tags?t=${tag}`)
+        }
+        return this.apiCall("get", `${url}/search/tags?t=${tag}`)
     }
 
     showDrafts() {

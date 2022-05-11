@@ -22,6 +22,8 @@ export default function SinglePost(props) {
         fetchPost()        
     }, [])
 
+  
+
     
   
     function renderButtons() {
