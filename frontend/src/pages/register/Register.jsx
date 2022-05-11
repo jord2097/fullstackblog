@@ -51,7 +51,7 @@ export default function Register(props) {
                     <input className='loginInput' name="password" type="password" placeholder='Password'/>
                     {/* <label htmlFor='confirmPassword'></label>
                     <input className='loginInput' type="password" placeholder='Confirm your password'/> */}
-                    <button className='createAccountButton' type="submit"> Create Account</button>
+                   
                 </form>
             </div>
                 

@@ -1,15 +1,16 @@
-/* *{
-    background-color: azure;
-} */
+
 .loginPage{
     display: flex;
     margin-top: 30px;
-    margin-left: 10px;
     margin-right: 100px;
+    margin-left: 25%;
     color: rgb(15, 15, 15);
-   
-    padding: 2px;
-    width: 100%;
+   width:500px;
+   background-color: rgb(207, 244, 230);
+   padding: 2px;
+   text-align: center;
+
+    
     
     
     
@@ -17,13 +18,12 @@
 }
 .loginPageText{
     width: 100%;
-    
-    box-shadow:0 4px 8px 0 rgba(39, 200, 34, 0.2), 0 6px 20px 0 rgba(52, 237, 6, 0.138);
+    border: solid 1px;
+    padding: 40px;
+    background-color: white;
+   
 }
-.rightbar, .leftbar{
-    flex:3;
-    
-}
+
 .loginButton{
     color: white;
     background-color: teal;
@@ -37,14 +37,12 @@
 .loginButton:hover{
     background-color: rgb(1, 101, 101);
 }
-.form{
-    
-    margin-top: 10%;
-    
-}
 
-.loginInput{
-    margin: 4px;
-    padding-right: 3px;
-}
 
+.Register{
+    text-align: center;
+    padding-bottom: 20px;
+    color: blue;
+
+
+}
