@@ -2,14 +2,14 @@ const express = require('express')
 const router = express.Router()
 const posts = require('./postsController')
 const users = require('./usersController')
-const { authorize } = require('./auth')
+const { authorize, verifyJwt } = require('./auth')
 const { canEditPost } = require('./permissions/posts') // checks if user is admin or original post creator
 const { ObjectId } = require('mongodb')
 const Role = require('./models/roles')
 const { token } = require('morgan')
 
 
-router.get('/posts', posts.index) // get all posts
+router.get('/posts', verifyJwt, posts.index) // get all posts
 router.get('/posts/:id', posts.indexOne) // get by ID
 router.post('/posts/create',  authorize([Role.author, Role.admin]), posts.create) // create post
 router.put('/posts/:id', authorize([Role.author, Role.admin]), posts.update) // update post

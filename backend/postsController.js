@@ -1,13 +1,25 @@
 const createError = require('http-errors')
 const { ObjectId } = require('mongodb')
 const { Post } = require('./models/posts')
+const roles = require('./models/roles')
 const { User } = require('./models/users')
 
 // CRUD operations
 
-exports.index = async function (req,res){
-    Post.find()
-    .then((posts) => res.send(posts))
+exports.index = async function (req,res,next){    
+    const decoded = req.decoded
+    if (decoded?.role === roles.admin || decoded?.role === roles.author) {
+        Post.find()
+        .then((posts) => res.send(posts))
+    } else {
+        Post.find({
+            "$and":[
+                {draft: false},
+                {published: true}
+            ]
+        })
+        .then((posts) => res.send(posts))
+    }
 }
 
 exports.indexOne = async function(req,res){

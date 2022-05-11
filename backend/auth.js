@@ -1,6 +1,7 @@
 const { User } = require('./models/users.js')
 const { expressjwt: jwt } = require('express-jwt')
 const { secret } = require('./config.json')
+const jwtoken = require('jsonwebtoken')
 
 
 function authorize(roles = []) { // authorization middleware
@@ -27,6 +28,36 @@ function authorize(roles = []) { // authorization middleware
     ]
 }
 
+/* function parseJwt (token) {
+    if (token) {
+        token.replace(/^Bearer\s+/, "")
+        var base64Url = token.split('.')[1]
+        var base64 = base64Url.replace('-', '+').replace('_','/')
+        return JSON.parse(Buffer.from(base64, 'base64').toString('utf8'))
+    }
+} */ // doesnt verify before decode
+
+function verifyJwt (req, res, next) { // verify token where login isnt required
+    let token = req.headers['authorization']
+    if (token) {
+        token = token.replace(/^Bearer\s+/, "")        
+        jwtoken.verify(token, secret, (err, decoded) => {            
+            if (err) {
+                return res.json({
+                    success: false,
+                    message: 'Token is not valid'
+
+                })                
+            }
+            req.decoded = decoded;
+            next();
+        })
+    } else {
+        next()
+    }
+}
+
 module.exports = {    
-    authorize    
+    authorize, 
+    verifyJwt 
 }
