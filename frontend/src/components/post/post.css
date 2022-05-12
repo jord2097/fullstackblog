@@ -43,19 +43,21 @@
   max-height: 150px;
   padding: 0 16px;  
   color: black;
-  line-height: 24px;
+  line-height: 20px;
   margin-top: 5px;
   overflow: hidden;
-  text-overflow: ellipsis;
+  /* text-overflow: ellipsis; */
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   /* webkit-line-clamp only works in combination with web-kit-box-orient and display:-webkit-box or display: -webkit-inline-box */
-  margin-bottom: 2%;
-  cursor: pointer;
+  margin-bottom: 2%;  
 }
 /* .postDesc:hover {
   overflow: visible;
   -webkit-line-clamp: unset;
 }
  */
+.MuiChip-root {
+  cursor: pointer !important;
+}

@@ -17,7 +17,7 @@ export default function Post(props) {
   })   
   const createMarkup = (HTML) => {
     return {
-      __html: DOMpurify.sanitize(HTML).replace(regexHTML, "<br />")
+      __html: HTML.replace(regexHTML, "<br />")
     }
   }
 
@@ -76,14 +76,14 @@ export default function Post(props) {
         <div className={classes.tags}>
           {trimmedTags[0] ?
           <Link to={`/tag?t=${trimmedTags[0]}`}>
-            <Chip label={trimmedTags[0]} /> 
+            <Chip className={classes.chips} label={trimmedTags[0]} /> 
           </Link>
           : null}
           {trimmedTags[1] ? <Link to={`/tag?t=${trimmedTags[1]}`}>
-            <Chip label={trimmedTags[1]} /> 
+            <Chip className={classes.chips} label={trimmedTags[1]} /> 
           </Link> : null}
           {trimmedTags[2] ? <Link to={`/tag?t=${trimmedTags[2]}`}>
-            <Chip label={trimmedTags[2]} /> 
+            <Chip className={classes.chips} label={trimmedTags[2]} /> 
           </Link> : null}    
         </div>   
         <CardActions>

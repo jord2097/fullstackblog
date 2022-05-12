@@ -22,7 +22,7 @@ const CreateNewPost = (props) => {
   const submitHandler = (e) => {
     e.preventDefault();
     const stringFromHtml = draftToHtml(convertToRaw(editorState.getCurrentContent())) 
-    console.log(e.target.published.checked)
+    console.log(stringFromHtml)
     let result;
     if (props.current) {
       
