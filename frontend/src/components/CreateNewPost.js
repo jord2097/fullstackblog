@@ -8,14 +8,16 @@ import './richTextEditor.css'
 import {stateFromHTML} from 'draft-js-import-html'
 import { useNavigate } from "react-router-dom";
 
+
 const CreateNewPost = (props) => {
   const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
   const navigation = useNavigate()
 
   useEffect(() => {
-    if (props.current) {
-      let contentState = stateFromHTML(props.current.mainText)
+    if (props.current) {     
+      let contentState = stateFromHTML(props.current.mainText, {parserOptions: {atomicImages: true}})     
       setEditorState(EditorState.createWithContent(contentState))
+      console.log(editorState)
     }
   }, [props.current])
 
