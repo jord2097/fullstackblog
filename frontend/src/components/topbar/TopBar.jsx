@@ -12,10 +12,6 @@ export default function TopBar(props) {
   let navigate = useNavigate()
   const classes = useStyles()
 
-<<<<<<< HEAD
-
-  function searchSubmit(e) {
-=======
   const logout = () => {
     authService.logout()
     props.loggedIn()
@@ -23,7 +19,6 @@ export default function TopBar(props) {
 
   
   function searchSubmit (e) {
->>>>>>> origin
     e.preventDefault()
     const encodedQuery = encodeURI(props.query)
     navigate(`/search?q=${encodedQuery}`)
@@ -43,7 +38,7 @@ export default function TopBar(props) {
         )
       } else {
         return (
-          <Nav.Link variant="contained" onClick={logout}>Logout</Nav.Link>
+          <Button variant="contained" onClick={logout}>Logout</Button>
         )
         }      
     } else {
@@ -60,29 +55,9 @@ export default function TopBar(props) {
   }
 
   return (
-<<<<<<< HEAD
-    <AppBar>
-      <Toolbar>
-        <Toolbar edge="start">
-          <i className="topIcon fab fa-facebook-square"></i>
-          <i className="topIcon fab fa-instagram-square"></i>
-          <i className="topIcon fab fa-twitter-square"></i>
-        </Toolbar>
-        <Link to="/" className={classes.appbarText}>HOME</Link>
-        <Link to="/add" className={classes.appbarText}>ADD</Link>
-        <Link to="#" className={classes.appbarFinalText}>ABOUT</Link>
-        <form onSubmit={searchSubmit} className={classes.searchBar}>
-          <TextField edge="end" style={{ backgroundColor: "#FFFFFF" }} name="search" variant="outlined" label="search" onChange={(e) => props.cQuery(e.target.value)} />
-        </form>
-        <Button variant="contained" className={classes.searchBarButton} onClick={searchSubmit}>
-          <i className="topSearchIcon fas fa-search"></i>
-        </Button>
-      </Toolbar>
-    </AppBar>
-=======
     <Navbar bg="light" expand="lg" className="navContainer">
   <Container fluid >
-    <Navbar.Brand href="/">The Developer Academy</Navbar.Brand>
+    <Navbar.Brand href="#">The Developer Academy</Navbar.Brand>
     <Navbar.Toggle aria-controls="navbarScroll" />
     <Navbar.Collapse id="navbarScroll">
       <Nav
@@ -101,7 +76,7 @@ export default function TopBar(props) {
           aria-label="Search"
           onChange={(e) => props.cQuery(e.target.value)}
         />
-        <Button variant="outlined" onClick={searchSubmit}>        
+        <Button variant="outlined" onClick="searchSubmit">        
         <i className="topSearchIcon fas fa-search"></i>        
         </Button>
       </Form>
@@ -127,7 +102,6 @@ export default function TopBar(props) {
       </Button>      
     </Toolbar>
     </AppBar> */ 
->>>>>>> origin
   )
 
 }

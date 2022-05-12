@@ -9,11 +9,7 @@ import {Route, Routes, useLocation } from 'react-router-dom'
 import {Search} from './pages/search/search'
 import CreateNewPost from "./components/CreateNewPost"
 import SinglePost from './pages/single/single'
-<<<<<<< HEAD
-import Latest5Post from "./components/latestpost";
-=======
 import Login from "./pages/login/Login"
->>>>>>> origin
 
 function App() {
   const [posts, cPosts] = useState([]);
@@ -76,19 +72,12 @@ function App() {
   }, [location]);
  
   return (
-
+    
 
    
     <Container maxWidth="lg">
-<<<<<<< HEAD
-      <TopBar query={query} cQuery={cQuery} search={search} />
-
-      <Container>
-        <div className={classes.toolbar}></div>
-=======
         <TopBar query={query} cQuery={cQuery} search={search} currentUser={currentUser} loggedIn={loggedIn} />
         {/* <div className={classes.toolbar}></div>         */}
->>>>>>> origin
         <Routes>          
           <Route path="/search" element={<Search client={client} posts={posts} cPosts={cPosts} search={search} />} />
           <Route path="/" element={<Home

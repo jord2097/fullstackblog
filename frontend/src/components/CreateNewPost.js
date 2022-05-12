@@ -55,17 +55,8 @@ const CreateNewPost = (props) => {
     })    
   };
 
-<<<<<<< HEAD
-switch (props.currentUser.user.role) {
-  case "author": // add post form shows to permitted users
-  case "admin":
-    return (
-      
-      <div className="create-post-container">
-=======
 
     return (      
->>>>>>> origin
       <section className="create-post">
           <form id="postForm" onSubmit={submitHandler}>
             <h1>{props.current ? `Editing "${props.current.title}"` : 'Create New Post'}</h1>
@@ -91,26 +82,8 @@ switch (props.currentUser.user.role) {
               onEditorStateChange={(state) => setEditorState(state)}
             />
             </div>
-<<<<<<< HEAD
-            <br />          
-            {/* </div>
-            <textarea // rich text editor here
-              // onChange={props.savePostContentToState}
-              
-              name="mainText"
-              placeholder="Content"
-              rows="8"
-              cols="41"
-              required
-              defaultValue={props.current?.mainText}
-              
-              // ref={props.getContent}
-              
-            > </textarea > */}            
-=======
             <br />
             <br />            
->>>>>>> origin
             <br />
             <input type="text" name="img" placeholder="Image URL" defaultValue={props.current?.img}
               ></input>
@@ -145,8 +118,7 @@ switch (props.currentUser.user.role) {
               <button className="button">Create</button>
             </section>
           </form>
-        </section>
-        </div>    
+        </section>    
     );
   
 

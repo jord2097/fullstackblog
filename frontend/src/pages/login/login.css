@@ -1,22 +1,15 @@
-
+/* *{
+    background-color: azure;
+} */
 .loginPage{
     display: flex;
-<<<<<<< HEAD
-    margin-top: 200px;
-}
-.loginPageText{
-    flex: 6;
-=======
     margin-top: 30px;
+    margin-left: 10px;
     margin-right: 100px;
-    margin-left: 25%;
     color: rgb(15, 15, 15);
-   width:500px;
-   background-color: rgb(207, 244, 230);
-   padding: 2px;
-   text-align: center;
-
-    
+   
+    padding: 2px;
+    width: 100%;
     
     
     
@@ -24,22 +17,13 @@
 }
 .loginPageText{
     width: 100%;
-<<<<<<< HEAD
     
->>>>>>> origin
     box-shadow:0 4px 8px 0 rgba(39, 200, 34, 0.2), 0 6px 20px 0 rgba(52, 237, 6, 0.138);
 }
 .rightbar, .leftbar{
     flex:3;
     
-=======
-    border: solid 1px;
-    padding: 40px;
-    background-color: white;
-   
->>>>>>> 4d8eb22be987b6a8e535d7a86579f6aef2fdac5d
 }
-
 .loginButton{
     color: white;
     text-transform: uppercase;
@@ -48,50 +32,23 @@
     cursor: pointer;
     padding: 10px;
     border: none;
-<<<<<<< HEAD
-    border-radius: 5px;
-
-=======
     
   
 }
 .loginButton:hover{
     background-color: rgb(1, 101, 101);
->>>>>>> origin
 }
-<<<<<<< HEAD
 .loginButton:hover{
     background-color: rgb(1, 101, 101);
 }
 
 .form{
     margin-top: 10%;
-<<<<<<< HEAD
-    display:flex
-}
-.loginPageText{
-    margin-top: 1%;
-    margin-bottom: 1%;
-}
-.loginInput{
-    margin: 10%;
-=======
     
 }
 
 .loginInput{
     margin: 4px;
     padding-right: 3px;
->>>>>>> origin
 }
-=======
 
->>>>>>> 4d8eb22be987b6a8e535d7a86579f6aef2fdac5d
-
-.Register{
-    text-align: center;
-    padding-bottom: 20px;
-    color: blue;
-
-
-}

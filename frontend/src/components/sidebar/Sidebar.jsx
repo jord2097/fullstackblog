@@ -8,12 +8,6 @@ export default function Sidebar(props) {
   return (
     
         
-<<<<<<< HEAD
-        {props.currentUser.token ? (
-          <>
-          <button className='logoutButton' onClick={logout} >Logout</button>
-          <Add client={props.client} refreshList={props.refreshList} current={props.current} cCurrent={props.cCurrent} currentUser={props.currentUser}/>
-=======
         
           <Paper className={classes.sidebar}>          
             <img class="sidebarImage" src={logo} 
@@ -23,7 +17,6 @@ export default function Sidebar(props) {
             <div className='TDA-Description'>
             We train junior Software Developers and Data Analystis from anywhere with our Part Time, 24 week online bootcamps.Many people think tech companies are only interested in graduates with Computer Science degrees. This isn’t true. Tech companies are interested in your skills, not your qualifications. Other people think you need to be a mathematical genius. This isn’t true either. 
             </div>
->>>>>>> origin
           
           </Paper>
         
