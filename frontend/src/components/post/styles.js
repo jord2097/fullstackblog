@@ -59,8 +59,12 @@ export default makeStyles({
     borderRadius: '15px',
     width: '100%',
     marginTop:'25px',
-    marginBottom: '40px',
-    
-  
+    marginBottom: '40px',  
+  },
+  chips: {
+    "&:hover": {
+      cursor: 'pointer',
+    }
   }
+
 });

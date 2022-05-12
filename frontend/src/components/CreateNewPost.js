@@ -8,21 +8,23 @@ import './richTextEditor.css'
 import {stateFromHTML} from 'draft-js-import-html'
 import { useNavigate } from "react-router-dom";
 
+
 const CreateNewPost = (props) => {
   const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
-  const navigation = useNavigate()
+  const navigation = useNavigate() 
 
   useEffect(() => {
-    if (props.current) {
-      let contentState = stateFromHTML(props.current.mainText)
+    if (props.current) {         
+      let contentState = stateFromHTML(props.current.mainText)     
       setEditorState(EditorState.createWithContent(contentState))
+      console.log(editorState)
     }
   }, [props.current])
 
   const submitHandler = (e) => {
     e.preventDefault();
     const stringFromHtml = draftToHtml(convertToRaw(editorState.getCurrentContent())) 
-    console.log(e.target.published.checked)
+    console.log(stringFromHtml)
     let result;
     if (props.current) {
       
