@@ -11,11 +11,11 @@ import { useNavigate } from "react-router-dom";
 
 const CreateNewPost = (props) => {
   const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
-  const navigation = useNavigate()
+  const navigation = useNavigate() 
 
   useEffect(() => {
-    if (props.current) {     
-      let contentState = stateFromHTML(props.current.mainText, {parserOptions: {atomicImages: true}})     
+    if (props.current) {         
+      let contentState = stateFromHTML(props.current.mainText)     
       setEditorState(EditorState.createWithContent(contentState))
       console.log(editorState)
     }
