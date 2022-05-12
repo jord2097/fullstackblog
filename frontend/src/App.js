@@ -20,6 +20,8 @@ function App() {
   let location = useLocation()
   const params = new URLSearchParams(location.search)
   const queryParam = params.get('q')
+  const catParam = params.get('c')
+  const tagParam = params.get('t')
 
   window.onload = function () {
     if (localStorage.getItem("hasCodeRunBefore") === null) {
@@ -44,15 +46,28 @@ function App() {
   };
 
   const search = () => {
-    client.searchbar(query).then((response) => cPosts(response.data))
+    client.searchbar(queryParam).then((response) => cPosts(response.data))
+  }
+
+  const searchCat = () => {
+    client.searchCategory(catParam).then((response) => cPosts(response.data))
+  }
+
+  const searchTag = () => {
+    client.searchTag(tagParam).then((response) => cPosts(response.data))
   }
 
   useEffect(() => {
     if (queryParam) {      
       search()
+    } else if (catParam) {
+      searchCat()
+    } else if (tagParam) {
+      searchTag()
     } else {
-      refreshList();   
+      refreshList();
     }
+    
     
   }, [location]);
  
@@ -64,12 +79,13 @@ function App() {
         <TopBar query={query} cQuery={cQuery} search={search} currentUser={currentUser} loggedIn={loggedIn} />
         {/* <div className={classes.toolbar}></div>         */}
         <Routes>          
-          <Route path="/search" element={<Search client={client} posts={posts} cPosts={cPosts} />} />
+          <Route path="/search" element={<Search client={client} posts={posts} cPosts={cPosts} search={search} />} />
           <Route path="/" element={<Home
           client={client}
           refreshList={refreshList}
           posts={posts}
           cPosts={cPosts}
+          searchCat={searchCat}
           current={current}
           cCurrent={cCurrent}          
           currentUser={currentUser}
@@ -77,7 +93,8 @@ function App() {
           <Route path='/add' element={<CreateNewPost client={client} refreshList={refreshList} current={current} cCurrent={cCurrent} currentUser={currentUser}/>}></Route>
           <Route path="/posts/:postId" element={<SinglePost client={client} currentUser={currentUser} />} />
           <Route path="/login" element={<Login client={client} loggedIn={loggedIn}/>} />
-          <Route path="/view"></Route>
+          <Route path="/category" element={<Search client={client} posts={posts} cPosts={cPosts} search={search} />} />
+          <Route path="/tag" element={<Search client={client} posts={posts} cPosts={cPosts} search={search}/>} />
         </Routes>
 
         

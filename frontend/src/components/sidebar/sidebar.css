@@ -6,7 +6,7 @@
 }
  */
 
- img{
+.sidebarImage {
 background-image:linear-gradient(#ffffff,
 #7dd87d);
 border-radius: 10px;
