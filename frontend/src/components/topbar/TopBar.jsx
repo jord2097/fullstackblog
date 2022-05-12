@@ -43,7 +43,7 @@ export default function TopBar(props) {
         )
       } else {
         return (
-          <Button variant="contained" onClick={logout}>Logout</Button>
+          <Nav.Link variant="contained" onClick={logout}>Logout</Nav.Link>
         )
         }      
     } else {
@@ -82,7 +82,7 @@ export default function TopBar(props) {
 =======
     <Navbar bg="light" expand="lg" className="navContainer">
   <Container fluid >
-    <Navbar.Brand href="#">The Developer Academy</Navbar.Brand>
+    <Navbar.Brand href="/">The Developer Academy</Navbar.Brand>
     <Navbar.Toggle aria-controls="navbarScroll" />
     <Navbar.Collapse id="navbarScroll">
       <Nav
@@ -101,7 +101,7 @@ export default function TopBar(props) {
           aria-label="Search"
           onChange={(e) => props.cQuery(e.target.value)}
         />
-        <Button variant="outlined" onClick="searchSubmit">        
+        <Button variant="outlined" onClick={searchSubmit}>        
         <i className="topSearchIcon fas fa-search"></i>        
         </Button>
       </Form>

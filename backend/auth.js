@@ -37,27 +37,22 @@ function authorize(roles = []) { // authorization middleware
     }
 } */ // doesnt verify before decode
 
-function verifyJwt (req, res, next) { // verify token where login isnt required
-    let token = req.headers['authorization']
-    if (token) {
-        token = token.replace(/^Bearer\s+/, "")        
-        jwtoken.verify(token, secret, (err, decoded) => {            
-            if (err) {
-                return res.json({
-                    success: false,
-                    message: 'Token is not valid'
-
-                })                
-            }
-            req.decoded = decoded;
-            next();
-        })
-    } else {
-        next()
+function authorizeElevated(roles = []) {
+    if (typeof roles === 'string'){
+        roles = [roles]
     }
+
+    return [
+        jwt({ secret, algorithms: ['HS256'], credentialsRequired: false}),
+
+        (req,res,next) => {
+            next()
+        }
+
+    ]
 }
 
 module.exports = {    
     authorize, 
-    verifyJwt 
+    authorizeElevated
 }

@@ -16,7 +16,7 @@ export default function Sidebar(props) {
 =======
         
           <Paper className={classes.sidebar}>          
-            <img src={logo} 
+            <img class="sidebarImage" src={logo} 
             style={{width:"100%",height:"fit-content"}}
             /> <hr/> 
              <div className='sidebarTitle'>ABOUT US</div> <hr/> <hr/>      

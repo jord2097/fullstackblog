@@ -17,7 +17,7 @@ export default function Home(props) {
         
           <Grid container justify="space-between" alignItems="stretch" spacing={3}>
             <Grid item xs={12} sm={7}>
-            <Posts client={props.client} refreshList={props.refreshList} posts={props.posts} cPosts={props.cPosts} current={props.current} cCurrent={props.cCurrent} currentUser={props.currentUser} />
+            <Posts client={props.client} refreshList={props.refreshList} posts={props.posts} cPosts={props.cPosts} searchCat={props.searchCat} current={props.current} cCurrent={props.cCurrent} currentUser={props.currentUser} />
             </Grid>
             <Grid item xs={12} sm={4}>      
             <Sidebar client={props.client} refreshList={() => {

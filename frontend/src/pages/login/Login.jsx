@@ -50,13 +50,17 @@ export default function Login(props) {
                         <input className='loginInput' name="username" type="text" placeholder='Username' disabled={disabled} />
                         <label htmlFor='password'></label>
                         <input className='loginInput' name="password" type="password" placeholder='Password' disabled={disabled} />
-                        <button className='loginButton' disabled={disabled} type="submit">Login</button>
-                    </form>               
+                        <div className= 'loginButtonContainer'>
+                             <button className='loginButton' disabled={disabled} type="submit">Login</button>
+                        </div>
+                    </form>   <br/>   
+                    <br/> <hr/>  
+                    <hr/>        
                 </div>
-                <Typography>
+                <Typography className='Register'>
                         Don't have an account yet?
                         <br />
-                        <Button onClick={renderRegister} variant="contained" disabled={disabled} color="primary" size="small" >Register</Button>
+                        <Button onClick={renderRegister} variant="contained" disabled={disabled} color="primary" size="small" >Create Account</Button>
                     </Typography>                
                 </div>
             ) : (

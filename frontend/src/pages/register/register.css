@@ -2,20 +2,20 @@
    
     display: flex;
     padding: 27px;
+    background-color: white;
+    
 }
-.rightbar, .leftbar {
-    flex:3;
-   
-}
-.registerPageContents{
+
+/* .registerPageContents{
     margin: 5px, 5px, 5px, 5px;
-    background-color: blue;
-}
+    background-color: white;
+    
+} */
 .formContainer{
-    background-image: linear-gradient(#ffffff,
-    #a5c6e3);
+
     padding: 15px;
-    box-shadow: 5px 5px 10px black ;
+    background-color: white;
+
 }
 
 /* .formContents */
@@ -36,11 +36,17 @@
     color: white;
     background-color: teal;
     align-items: center;
-    border-radius: 10px;
     padding: 5px;
+    margin: 10px;
 }
 .loginContainer{
     text-align: end;
-    padding-top: 20px;
-    padding-right: 20px;
+
+}
+.loginPage{
+    background-color:white;
+    border: solid 1px;
+    padding: 0px;
+    margin-bottom: 20px;
+    
 }

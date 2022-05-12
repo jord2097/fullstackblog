@@ -7,8 +7,7 @@ const { User } = require('./models/users')
 // CRUD operations
 
 exports.index = async function (req,res,next){    
-    const decoded = req.decoded
-    if (decoded?.role === roles.admin || decoded?.role === roles.author) {
+    if (req.auth?.role === "admin" || req.auth?.role === "author") {
         Post.find()
         .then((posts) => res.send(posts))
     } else {
@@ -98,20 +97,44 @@ exports.deleteAll =  async function (req,res,next){
 
 // extra operations
 
-exports.searchCategory = async function (req, res, next){
-    const categoryMatches = await Post.find({category: req.body.category})
+exports.searchCategory = async function (req, res, next){    
+    if (req.auth?.role === roles.admin || req.auth?.role === roles.author) {
+        Post.find({category: req.query.c})
+        .then((posts) => res.send(posts))
+    } else {
+        Post.find({
+            category: req.query.c,
+            "$and":[
+                {draft: false},
+                {published: true}
+            ]
+        })
+        .then((posts) => res.send(posts))
+
+    }
+    /* const categoryMatches = await Post.find({category: req.query.c})
     if (categoryMatches.length === 0){
         return next(createError(404, "no posts with that category were found"))
-    }
-    res.send(categoryMatches)
+    } */
+    
 } // searches exact category match
 
-exports.searchTags = async function (req, res, next){
-    const tagMatches = await Post.find({tags: {$regex: req.body.tags, $options: "i"}})
-    if (tagMatches.length === 0){
-        return next(createError(404, "no match found"))
+exports.searchTags = async function (req, res, next){    
+    if(req.auth?.role === "admin" || req.auth?.role === "author") {
+        Post.find({tags: {$regex: req.query.t, $options: "gi"}})
+        .then((posts) => res.send(posts))        
+    } else {
+        console.log("random user")
+        Post.find({
+            tags: {$regex: req.query.t, $options: "gi"},
+            "$and":[
+                {draft: false},
+                {published: true}
+            ]
+        })
+        .then((posts) => res.send(posts))
     }
-    res.send(tagMatches)
+
 } // searches for tag within string using regex
 
 exports.search = async function (req, res, next){
