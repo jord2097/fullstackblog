@@ -40,7 +40,7 @@
 }
 .postDesc {
   font-size: 15px;
-  max-height: 150px;
+  height: 80px;  
   padding: 0 16px;  
   color: black;
   line-height: 20px;
@@ -60,4 +60,7 @@
  */
 .MuiChip-root {
   cursor: pointer !important;
+}
+.postCats a {
+  color: #be9656 !important;
 }

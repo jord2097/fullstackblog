@@ -35,8 +35,7 @@ export default function Posts(props) {
   }
 
   const renderPosts = () => {
-    if (postView === "drafts") {
-      console.log(props.posts)
+    if (postView === "drafts") {      
       return (
         props.posts.filter(post => post.draft === true).map((post) => (
           <Grid key={post._id} item xs={12} sm={6} md={6}>
@@ -50,6 +49,7 @@ export default function Posts(props) {
           <Grid key={post._id} item xs={12} sm={6} md={6}>
             <Post post={post} searchCat={props.searchCat} updatePost={updatePost} deletePost={deletePost} currentUser={props.currentUser} />
           </Grid>
+          
       ))
       )
     } else {
@@ -75,10 +75,11 @@ export default function Posts(props) {
           <br />
           <Button className="toolbarButtons" style={{ marginRight: 16 }} variant="contained" onClick={showUnpublished} >View Unpublished</Button>
           <br />
-          <Button className="toolbarButtons" style={{ marginRight: 16 }} variant="contained" onClick={showDefault}> Default</Button>
-        </Toolbar>
-        <Grid className={classes.container} container alignItems="stretch" spacing={3}>
-          {renderPosts()}   
+          <Button className="toolbarButtons" style={{ marginRight: 16 }} variant="contained" onClick={showDefault}> Default</Button>          
+        </Toolbar>          
+        <Grid className={classes.container} container alignItems="stretch" spacing={3}>          
+          {renderPosts()}
+          
           
         </Grid>
         </>
