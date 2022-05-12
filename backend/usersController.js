@@ -12,7 +12,7 @@ exports.index = async function (req,res){
     .then((users) => res.send(users))
 }
 
-exports.indexSecure = async function (req,res,next){ // not secured yet, userWithoutPassword operation not working
+exports.indexSecure = async function (req,res,next){ // secured
     const users = await User.find().select("-password")
     users.map (users => {
         // const { password, ...userWithoutPassword } = users        

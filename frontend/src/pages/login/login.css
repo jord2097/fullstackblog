@@ -3,10 +3,28 @@
 } */
 .loginPage{
     display: flex;
+<<<<<<< HEAD
     margin-top: 200px;
 }
 .loginPageText{
     flex: 6;
+=======
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 100px;
+    color: rgb(15, 15, 15);
+   
+    padding: 2px;
+    width: 100%;
+    
+    
+    
+   
+}
+.loginPageText{
+    width: 100%;
+    
+>>>>>>> origin
     box-shadow:0 4px 8px 0 rgba(39, 200, 34, 0.2), 0 6px 20px 0 rgba(52, 237, 6, 0.138);
 }
 .rightbar, .leftbar{
@@ -21,8 +39,16 @@
     cursor: pointer;
     padding: 10px;
     border: none;
+<<<<<<< HEAD
     border-radius: 5px;
 
+=======
+    
+  
+}
+.loginButton:hover{
+    background-color: rgb(1, 101, 101);
+>>>>>>> origin
 }
 .loginButton:hover{
     background-color: rgb(1, 101, 101);
@@ -30,6 +56,7 @@
 
 .form{
     margin-top: 10%;
+<<<<<<< HEAD
     display:flex
 }
 .loginPageText{
@@ -38,5 +65,13 @@
 }
 .loginInput{
     margin: 10%;
+=======
+    
+}
+
+.loginInput{
+    margin: 4px;
+    padding-right: 3px;
+>>>>>>> origin
 }
 

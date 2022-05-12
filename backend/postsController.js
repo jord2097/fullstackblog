@@ -1,13 +1,25 @@
 const createError = require('http-errors')
 const { ObjectId } = require('mongodb')
 const { Post } = require('./models/posts')
+const roles = require('./models/roles')
 const { User } = require('./models/users')
 
 // CRUD operations
 
-exports.index = async function (req,res){
-    Post.find()
-    .then((posts) => res.send(posts))
+exports.index = async function (req,res,next){    
+    const decoded = req.decoded
+    if (decoded?.role === roles.admin || decoded?.role === roles.author) {
+        Post.find()
+        .then((posts) => res.send(posts))
+    } else {
+        Post.find({
+            "$and":[
+                {draft: false},
+                {published: true}
+            ]
+        })
+        .then((posts) => res.send(posts))
+    }
 }
 
 exports.indexOne = async function(req,res){
@@ -50,12 +62,12 @@ exports.update = function (req,res,next){
         (req.body.draft) ? post.draft = true : post.draft = false
         if (req.body.draft === "true") {
             post.draft = true
-        } else if (req.body.draft === "false") {
+        } else if (req.body.draft === false) {
             post.draft = false
         }
-        if (req.body.published === "true") {
+        if (req.body.published === true) {
             post.published = true
-        } else if (req.body.published === "false") {
+        } else if (req.body.published === false) {
             post.published = false
         }
         if (req.body.creatorID) {post.creatorID = req.body.creatorID}   

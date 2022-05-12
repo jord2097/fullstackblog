@@ -23,8 +23,9 @@ export function SearchResult(props) {
             <div className={classes.searchResultInfo}>
                 <Typography variant="body2" >By {props.post.creatorID} at {props.post.creationTime ? formatDate(props.post.creationTime) : "Unknown Date"}</Typography>                
                 <Typography variant="body2">Category: {props.post.category}</Typography>
-                <Chip label={trimmedTags[0]} />
-                <Chip label={trimmedTags[1]} />            
+                {trimmedTags[0] ? <Chip label={trimmedTags[0]} /> : null}
+                {trimmedTags[1] ? <Chip label={trimmedTags[1]} /> : null}
+                {trimmedTags[2] ? <Chip label={trimmedTags[1]} /> : null}          
             </div>
         </div>
     )
