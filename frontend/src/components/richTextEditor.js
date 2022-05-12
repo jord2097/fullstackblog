@@ -18,31 +18,31 @@ export default class RichTextEditor extends Component {
         });
     };
 
-    render () {
-        const {editorState} = this.state;
+    render() {
+        const { editorState } = this.state;
         console.log(draftToHtml(convertToRaw(editorState.getCurrentContent())));
 
         return (
             <div className="textEditor">
                 <div>
-                <Editor
-                    editorState={editorState}
-                    toolbarClassName="toolbarClassName"
-                    wrapperClassName="wrapperClassName"
-                    editorClassName="editorClassName"
-                    onEditorStateChange={this.onEditorStateChange}
-                    placeholder="Content"
-                />
+                    <Editor
+                        editorState={editorState}
+                        toolbarClassName="toolbarClassName"
+                        wrapperClassName="wrapperClassName"
+                        editorClassName="editorClassName"
+                        onEditorStateChange={this.onEditorStateChange}
+                        placeholder="Content"
+                    />
                 </div>
-                
-                
-                
+
+
+
                 {/* <div className="editorButton">
 
                 <button className='submit'onSubmit={draftToHtml(convertToRaw(editorState.getCurrentContent()))}>Submit</button>
 
                 </div> */}
-              
+
             </div>
         )
     }

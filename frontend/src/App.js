@@ -9,6 +9,7 @@ import {Route, Routes, useLocation } from 'react-router-dom'
 import {Search} from './pages/search/search'
 import CreateNewPost from "./components/CreateNewPost"
 import SinglePost from './pages/single/single'
+import Latest5Post from "./components/latestpost";
 
 function App() {
   const [posts, cPosts] = useState([]);
@@ -56,12 +57,12 @@ function App() {
   }, [location]);
  
   return (
-    
+
 
    
     <Container maxWidth="lg">
       <TopBar query={query} cQuery={cQuery} search={search} />
-     
+
       <Container>
         <div className={classes.toolbar}></div>
         <Routes>          

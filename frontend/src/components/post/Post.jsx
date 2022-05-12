@@ -33,8 +33,6 @@ export default function Post(props) {
     }
   }
 
-
-
   return (
       <>
     <div className='post'>
@@ -57,16 +55,11 @@ export default function Post(props) {
             
             <hr/>
             {/* hr adds line */}
-
             
             <span className="postDate"> {props.post.creationTime ? formatDate(props.post.creationTime) : "Unknown Date"} </span>            
             <Chip label={trimmedTags[0]} />
             <Chip label={trimmedTags[1]} />     
             <div className='postDesc' dangerouslySetInnerHTML={{__html: props.post.mainText.replace(regexHTML,"<br />")}}/>
-          
-
-            
-
      </div>
      
      

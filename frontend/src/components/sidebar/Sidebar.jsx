@@ -16,7 +16,7 @@ export default function Sidebar(props) {
         
         {props.currentUser.token ? (
           <>
-          <button onClick={logout} >logout</button>
+          <button className='logoutButton' onClick={logout} >Logout</button>
           <Add client={props.client} refreshList={props.refreshList} current={props.current} cCurrent={props.cCurrent} currentUser={props.currentUser}/>
           
           </>

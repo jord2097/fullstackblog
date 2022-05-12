@@ -55,8 +55,7 @@ export default function Posts(props) {
       ))
       )
     }
-    
-    
+        
   }
   switch (props.currentUser.user?.role) {
     case "author":

@@ -4,13 +4,9 @@
 .loginPage{
     display: flex;
     margin-top: 200px;
-    
-    
-   
 }
 .loginPageText{
     flex: 6;
-    
     box-shadow:0 4px 8px 0 rgba(39, 200, 34, 0.2), 0 6px 20px 0 rgba(52, 237, 6, 0.138);
 }
 .rightbar, .leftbar{
@@ -19,16 +15,20 @@
 }
 .loginButton{
     color: white;
+    text-transform: uppercase;
     background-color: teal;
     margin-top: 20px;
     cursor: pointer;
     padding: 10px;
     border: none;
-  
-  
+    border-radius: 5px;
+
 }
+.loginButton:hover{
+    background-color: rgb(1, 101, 101);
+}
+
 .form{
-    
     margin-top: 10%;
     display:flex
 }
@@ -37,6 +37,6 @@
     margin-bottom: 1%;
 }
 .loginInput{
-    margin: 4%;
+    margin: 10%;
 }
 

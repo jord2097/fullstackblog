@@ -58,6 +58,7 @@ switch (props.currentUser.user.role) {
   case "admin":
     return (
       
+      <div className="create-post-container">
       <section className="create-post">
           <form id="postForm" onSubmit={submitHandler}>
             <h1>{props.current ? `Editing "${props.current.title}"` : 'Create New Post'}</h1>
@@ -83,8 +84,7 @@ switch (props.currentUser.user.role) {
               onEditorStateChange={(state) => setEditorState(state)}
             />
             </div>
-            <br />
-            <br />            
+            <br />          
             {/* </div>
             <textarea // rich text editor here
               // onChange={props.savePostContentToState}
@@ -99,7 +99,6 @@ switch (props.currentUser.user.role) {
               // ref={props.getContent}
               
             > </textarea > */}            
-            <br />
             <br />
             <input type="text" name="img" placeholder="Image URL" defaultValue={props.current?.img}
               ></input>
@@ -135,7 +134,7 @@ switch (props.currentUser.user.role) {
             </section>
           </form>
         </section>
-      
+        </div>    
     );
   default: return (
     <div className="sidebarItem">

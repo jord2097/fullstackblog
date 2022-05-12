@@ -46,3 +46,7 @@
     transform: rotate(360deg);
   }
 }
+
+.create-post-container{
+  max-width: fit-content;
+}
