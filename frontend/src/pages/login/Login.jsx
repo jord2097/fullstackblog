@@ -3,12 +3,32 @@ import React, { useState } from 'react'
 import { Button, Typography } from '@material-ui/core'
 import Register from '../register/Register'
 import { useNavigate } from 'react-router-dom'
+import toastr from 'toastr'
+import 'toastr/build/toastr.min.css'
+
 
 
 export default function Login(props) {
     const [disabled, cDisabled] = useState(false)
     const [needToRegister, cNeedToRegister] = useState(false)
     const navigate = useNavigate()
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-center",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+      }
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -18,8 +38,8 @@ export default function Login(props) {
         .then((response) => {
             cDisabled(true)           
             props.loggedIn()
-            navigate('/')      
-            // toastr notif or equiv
+            navigate('/')
+            toastr["success"]("You are now logged in and can access your permitted features.", "Login Successfully")            
         })        
         .catch(() => {
             cDisabled(false)

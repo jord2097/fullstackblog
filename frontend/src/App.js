@@ -10,6 +10,9 @@ import {Search} from './pages/search/search'
 import CreateNewPost from "./components/CreateNewPost"
 import SinglePost from './pages/single/single'
 import Login from "./pages/login/Login"
+import toastr from 'toastr'
+import 'toastr/build/toastr.min.css'
+
 
 function App() {
   const [posts, cPosts] = useState([]);
@@ -22,6 +25,23 @@ function App() {
   const queryParam = params.get('q')
   const catParam = params.get('c')
   const tagParam = params.get('t')
+  toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": false,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  }
 
   window.onload = function () {
     if (localStorage.getItem("hasCodeRunBefore") === null) {
@@ -32,7 +52,7 @@ function App() {
   }
   
   const loggedIn = () => {
-    cCurrentUser(authService.currentUserValue)
+    cCurrentUser(authService.currentUserValue)    
   }
   
   const clientToken = currentUser?.token 
