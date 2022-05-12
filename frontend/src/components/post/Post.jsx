@@ -30,6 +30,7 @@ export default function Post(props) {
           
           <Button size="small" onClick={() => props.updatePost(props.post)}>
           <NotesIcon />
+          Update
           </Button>
           
           </>

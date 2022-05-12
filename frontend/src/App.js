@@ -91,7 +91,7 @@ function App() {
           currentUser={currentUser}
           loggedIn={loggedIn} />} /> 
           <Route path='/add' element={<CreateNewPost client={client} refreshList={refreshList} current={current} cCurrent={cCurrent} currentUser={currentUser}/>}></Route>
-          <Route path="/posts/:postId" element={<SinglePost client={client} currentUser={currentUser} />} />
+          <Route path="/posts/:postId" element={<SinglePost client={client} currentUser={currentUser} current={current} cCurrent={cCurrent} refreshList={refreshList} />} />
           <Route path="/login" element={<Login client={client} loggedIn={loggedIn}/>} />
           <Route path="/category" element={<Search client={client} posts={posts} cPosts={cPosts} search={search} />} />
           <Route path="/tag" element={<Search client={client} posts={posts} cPosts={cPosts} search={search}/>} />
