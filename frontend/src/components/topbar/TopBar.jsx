@@ -38,7 +38,7 @@ export default function TopBar(props) {
         )
       } else {
         return (
-          <Button variant="contained" onClick={logout}>Logout</Button>
+          <Nav.Link variant="contained" onClick={logout}>Logout</Nav.Link>
         )
         }      
     } else {

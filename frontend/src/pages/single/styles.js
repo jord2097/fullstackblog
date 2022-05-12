@@ -18,7 +18,7 @@ export default makeStyles({
       flexDirection: 'column',
       justifyContent: 'space-between',
       borderRadius: '15px',
-      height: '100%',
+      height: '0%',
       position: 'relative',
     },
     overlay: {
@@ -57,11 +57,18 @@ export default makeStyles({
     },
     card: {
       borderRadius: '15px',
-      width: '100%',
+      width: '75%',
       marginTop:'25px',
-      marginBottom: '40px',
-      
-    
+      marginBottom: '40px',   
+    },
+    mainText: {
+      fontSize: '15px',
+      marginTop: '5px',
+      padding: '0 16px',
+      lineHeight: '24px',
+      marginBottom: '2%'
+
+
     }
   });
   

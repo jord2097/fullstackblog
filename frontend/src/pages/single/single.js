@@ -1,4 +1,4 @@
-import { Chip, Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core/'
+import { Grid, Chip, Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core/'
 import {formatDate} from '../../_services/date-format'
 import {useEffect, useState, useMemo} from 'react'
 import {Link, useParams, useLocation} from 'react-router-dom'
@@ -83,7 +83,7 @@ export default function SinglePost(props) {
   
   
     return (
-        <>
+      
       <Card className={classes.card}>
           <CardMedia
           className={classes.media}
@@ -103,7 +103,7 @@ export default function SinglePost(props) {
           <br />                      
           <hr/>             
           <span className="postDate"> By {current.creatorID} at {current.creationTime ? formatDate(current.creationTime) : "Unknown Date"} </span>            
-          <div className='postDesc' dangerouslySetInnerHTML={createMarkup(current.mainText)}/>                
+          <div className={classes.mainText} dangerouslySetInnerHTML={createMarkup(current.mainText)}/>                
           { tags && <div className={classes.tags}>           
           {tags[0] ?
           <Link to={`/tag?t=${tags[0]}`}>
@@ -124,7 +124,7 @@ export default function SinglePost(props) {
        
        
   
-       </>
+       
   
   
     )
