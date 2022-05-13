@@ -25,7 +25,7 @@ export function SearchResult(props) {
                 <Typography variant="body2">Category: {props.post.category}</Typography>
                 {trimmedTags[0] ? <Chip label={trimmedTags[0]} /> : null}
                 {trimmedTags[1] ? <Chip label={trimmedTags[1]} /> : null}
-                {trimmedTags[2] ? <Chip label={trimmedTags[1]} /> : null}          
+                {trimmedTags[2] ? <Chip label={trimmedTags[2]} /> : null}          
             </div>
         </div>
     )

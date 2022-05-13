@@ -77,9 +77,20 @@ export default function Post(props) {
                              
         <div className='postDesc' dangerouslySetInnerHTML={createMarkup(props.post.mainText)}/>
         <div className={classes.tags}>
-          {trimmedTags[0] ? <Chip label={trimmedTags[0]} /> : null}
+          {/* {trimmedTags[0] ? <Chip label={trimmedTags[0]} /> : null}
           {trimmedTags[1] ? <Chip label={trimmedTags[1]} /> : null}
-          {trimmedTags[2] ? <Chip label={trimmedTags[2]} /> : null}    
+          {trimmedTags[2] ? <Chip label={trimmedTags[2]} /> : null} */}
+          {trimmedTags[0] ?
+          <Link to={`/tag?t=${trimmedTags[0]}`}>
+            <Chip label={trimmedTags[0]} /> 
+          </Link>
+          : null}
+          {trimmedTags[1] ? <Link to={`/tag?t=${trimmedTags[1]}`}>
+            <Chip label={trimmedTags[1]} /> 
+          </Link> : null}
+          {trimmedTags[2] ? <Link to={`/tag?t=${trimmedTags[2]}`}>
+            <Chip label={trimmedTags[2]} /> 
+          </Link> : null}     
         </div>   
         <CardActions>
           {renderButtons()}

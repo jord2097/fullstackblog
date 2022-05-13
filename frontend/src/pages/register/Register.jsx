@@ -36,8 +36,8 @@ export default function Register(props) {
             toastr["success"]("You can now login.", "Registration Successful!")
         })
         .catch(() => [
-            cDisabled(false)
-            // toastr or equivalent
+            cDisabled(false),
+            toastr["error"]("Please try again, and ensure your fields are in the correct format.", "Registration Failed.")
         ])
     }
 

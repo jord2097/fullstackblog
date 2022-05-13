@@ -41,6 +41,11 @@ export default makeStyles((theme) => ({
     searchResultContent: {
         flexGrow: 1
     },
+    searchResultPostText: {
+        maxHeight: "150px",
+        overflow: "hidden",
+        textOverflow: "ellipsis"
+    }
     
     
 
