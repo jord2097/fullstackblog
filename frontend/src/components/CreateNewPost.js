@@ -35,8 +35,7 @@ const CreateNewPost = (props) => {
   useEffect(() => {
     if (props.current) {         
       let contentState = stateFromHTML(props.current.mainText)     
-      setEditorState(EditorState.createWithContent(contentState))
-      console.log(editorState)
+      setEditorState(EditorState.createWithContent(contentState))      
     }
   }, [props.current])
 
