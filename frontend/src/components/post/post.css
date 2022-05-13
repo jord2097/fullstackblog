@@ -30,6 +30,7 @@
   font-size: 24px;
   font-weight: 700;
   margin-top: 15px;
+  box-decoration-break: clone;
 }
 .postDate {
   padding: 0px 0px 16px 16px;
