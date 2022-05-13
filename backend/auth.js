@@ -13,16 +13,12 @@ function authorize(roles = []) { // authorization middleware
         // authenticates JWT token and appends userdata to req.user
         jwt({ secret, algorithms: ['HS256'] }),
         
-
-        // authorizes based on user roles
-        (req,res,next) => {
+        (req,res,next) => { // takes in data from the request
             
-            if (roles.length && !roles.includes(req.auth.role)) {
-                // user doesn't have the required role
+            if (roles.length && !roles.includes(req.auth.role)) { // if user doesn't have the required role                
                 return res.status(401).json({message: 'Unauthorized'})
             }
-            // after successful authentication and authorization
-            next()
+            next() // after successful authentication and authorization
         }      
         
     ]
