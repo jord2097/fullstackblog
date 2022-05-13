@@ -79,7 +79,7 @@ export default function Post(props) {
         <div className={classes.tags}>
           {trimmedTags[0] ? <Chip label={trimmedTags[0]} /> : null}
           {trimmedTags[1] ? <Chip label={trimmedTags[1]} /> : null}
-          {trimmedTags[2] ? <Chip label={trimmedTags[1]} /> : null}    
+          {trimmedTags[2] ? <Chip label={trimmedTags[2]} /> : null}    
         </div>   
         <CardActions>
           {renderButtons()}
