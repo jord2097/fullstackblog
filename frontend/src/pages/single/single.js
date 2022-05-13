@@ -1,22 +1,24 @@
 import { Grid, Chip, Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core/'
 import {formatDate} from '../../_services/date-format'
 import {useEffect, useState, useMemo} from 'react'
-import {Link, useParams, useLocation} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 import useStyles from './styles'
 import NotesIcon from '@mui/icons-material/Notes';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DOMpurify from 'dompurify'
 import { FormControlUnstyledContext } from '@mui/base'
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 export default function SinglePost(props) {
     const {postId} = useParams()
-    const [current, cCurrent] = useState({})
+    const [currentPost, cCurrentPost] = useState({})
     const [tags, cTags] = useState([])  
     const classes = useStyles()
-    let location = useLocation()
+    const navigate = useNavigate()
+    
     const regexHTML = /\n/g // identifies newlines
    
     const createMarkup = (HTML) => {
@@ -24,19 +26,25 @@ export default function SinglePost(props) {
         __html: DOMpurify.sanitize(HTML).replace(regexHTML, "<br />")
       }
     }
+
+    const updatePost = (post) => {
+      console.log(post)
+      props.cCurrent(post)      
+      navigate('/add')
+    }
+
+    const deletePost = (id) => {
+      props.client.deletePost(id).then(() => {
+        navigate('/')
+      })
+    }
     
     
 
-    useEffect(() => {
-        /* props.client.getSinglePost(postId)
-        .then(result => {
-          console.log(result.data)
-          cCurrent(result.data)          
-        })
- */
+    useEffect(() => {        
         const fetchData = async () => {
           const result = await props.client.getSinglePost(postId)          
-          cCurrent(result.data)         
+          cCurrentPost(result.data)         
         }
         fetchData()
         .catch(console.error)       
@@ -44,14 +52,14 @@ export default function SinglePost(props) {
 
     useEffect(() => {
       const renderTags = () => {
-        const separatedTags = current.tags?.split(',')
+        const separatedTags = currentPost.tags?.split(',')
         const trimmedTags = separatedTags?.map(tag => {
           return tag.trim()
         })      
         cTags(trimmedTags)       
       }
       renderTags()
-    }, [current]) 
+    }, [currentPost]) 
     
   
     function renderButtons() {
@@ -59,7 +67,7 @@ export default function SinglePost(props) {
         if (props.currentUser.user.role === "author"){
           return (
             <div className={classes.manageButtons}>
-            <Button size="small" onClick={() => props.updatePost(props.post)}><NotesIcon />          
+            <Button size="small" onClick={() => props.updatePost(currentPost)}><NotesIcon />          
             Update
             </Button>
             </div>
@@ -67,11 +75,11 @@ export default function SinglePost(props) {
         } else if (props.currentUser.user.role === "admin"){
           return (
             <div className={classes.manageButtons}>
-              <Button size="small" onClick={() => props.updatePost(props.post)}><NotesIcon />
+              <Button size="small" onClick={() => updatePost(currentPost)}><NotesIcon />
                 Update         
               </Button>
             
-              <Button size="small" onClick={() => props.deletePost(props.post._id)}><DeleteIcon />
+              <Button size="small" onClick={() => deletePost(currentPost._id)}><DeleteIcon />
                 Delete         
               </Button>  
             </div>
@@ -87,23 +95,23 @@ export default function SinglePost(props) {
       <Card className={classes.card}>
           <CardMedia
           className={classes.media}
-          image={current.img}
+          image={currentPost.img}
           alt=''
           />
   
           <div className="postInfo"></div>
           <div className="postCats">
-            <Link to={`/category?c=${current.category}`}>
-              <span className="postCat">{current.category}</span>
+            <Link to={`/category?c=${currentPost.category}`}>
+              <span className="postCat">{currentPost.category}</span>
             </Link>               
             </div>
-            <Link to={`/posts/${current._id}`}>
-            <span className="postTitle"> {current.title} </span>
+            <Link to={`/posts/${currentPost._id}`}>
+            <span className="postTitle"> {currentPost.title} </span>
             </Link>
           <br />                      
           <hr/>             
-          <span className="postDate"> By {current.creatorID} at {current.creationTime ? formatDate(current.creationTime) : "Unknown Date"} </span>            
-          <div className={classes.mainText} dangerouslySetInnerHTML={createMarkup(current.mainText)}/>                
+          <span className="postDate"> By {currentPost.creatorID} at {currentPost.creationTime ? formatDate(currentPost.creationTime) : "Unknown Date"} </span>            
+          <div className={classes.mainText} dangerouslySetInnerHTML={createMarkup(currentPost.mainText)}/>                
           { tags && <div className={classes.tags}>           
           {tags[0] ?
           <Link to={`/tag?t=${tags[0]}`}>

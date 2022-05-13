@@ -30,6 +30,7 @@ export default function Post(props) {
           
           <Button size="small" onClick={() => props.updatePost(props.post)}>
           <NotesIcon />
+          Update
           </Button>
           
           </>
@@ -62,7 +63,9 @@ export default function Post(props) {
         />        
         <div className="postInfo"></div>
         <div className="postCats">
-          <span className="postCat">{props.post.category}</span>                  
+          <Link className='linkUnderline' to={`/category?c=${props.post.category}`}>
+            <span className="postCat">{props.post.category}</span>
+          </Link>             
         </div>
         <Link to={`/posts/${props.post._id}`}>
               <span className="postTitle"> {props.post.title} </span>

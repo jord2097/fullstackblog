@@ -7,11 +7,30 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import './richTextEditor.css'
 import {stateFromHTML} from 'draft-js-import-html'
 import { useNavigate } from "react-router-dom";
+import toastr from 'toastr'
+import 'toastr/build/toastr.min.css'
 
 
 const CreateNewPost = (props) => {
   const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
-  const navigation = useNavigate() 
+  const navigation = useNavigate()
+  toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": false,
+    "positionClass": "toast-top-center",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  }
 
   useEffect(() => {
     if (props.current) {         
@@ -54,6 +73,11 @@ const CreateNewPost = (props) => {
       document.getElementById("postForm").reset()
       props.refreshList()
       navigation('/')
+      if (props.current) {
+        toastr["success"]("Changes to the post have been made in the database.", "Post updated!")
+      } else {
+        toastr["success"]("The new post has been sent to the database.", "New post created!")
+      }
     })    
   };
 

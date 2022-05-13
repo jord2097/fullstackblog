@@ -10,6 +10,9 @@ import {Search} from './pages/search/search'
 import CreateNewPost from "./components/CreateNewPost"
 import SinglePost from './pages/single/single'
 import Login from "./pages/login/Login"
+import toastr from 'toastr'
+import 'toastr/build/toastr.min.css'
+
 
 function App() {
   const [posts, cPosts] = useState([]);
@@ -22,6 +25,23 @@ function App() {
   const queryParam = params.get('q')
   const catParam = params.get('c')
   const tagParam = params.get('t')
+  toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": false,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  }
 
   window.onload = function () {
     if (localStorage.getItem("hasCodeRunBefore") === null) {
@@ -32,7 +52,7 @@ function App() {
   }
   
   const loggedIn = () => {
-    cCurrentUser(authService.currentUserValue)
+    cCurrentUser(authService.currentUserValue)    
   }
   
   const clientToken = currentUser?.token 
@@ -91,7 +111,7 @@ function App() {
           currentUser={currentUser}
           loggedIn={loggedIn} />} /> 
           <Route path='/add' element={<CreateNewPost client={client} refreshList={refreshList} current={current} cCurrent={cCurrent} currentUser={currentUser}/>}></Route>
-          <Route path="/posts/:postId" element={<SinglePost client={client} currentUser={currentUser} />} />
+          <Route path="/posts/:postId" element={<SinglePost client={client} currentUser={currentUser} current={current} cCurrent={cCurrent} refreshList={refreshList} />} />
           <Route path="/login" element={<Login client={client} loggedIn={loggedIn}/>} />
           <Route path="/category" element={<Search client={client} posts={posts} cPosts={cPosts} search={search} />} />
           <Route path="/tag" element={<Search client={client} posts={posts} cPosts={cPosts} search={search}/>} />

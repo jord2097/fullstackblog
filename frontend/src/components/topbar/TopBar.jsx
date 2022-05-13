@@ -1,20 +1,39 @@
 import "./topbar.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import { useNavigate, Link } from 'react-router-dom'
 import { AppBar, TextField, Toolbar, Typography, Button } from '@material-ui/core'
 import useStyles from './styles'
 import { authService } from '../../_services/auth-service'
 import { Navbar, Container, Nav, NavDropdown, Form, FormControl} from 'react-bootstrap'
+import toastr from 'toastr'
+import 'toastr/build/toastr.min.css'
 
 
 export default function TopBar(props) {
   let navigate = useNavigate()
   const classes = useStyles()
+  toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": false,
+    "positionClass": "toast-top-center",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  }
 
   const logout = () => {
     authService.logout()
     props.loggedIn()
+    toastr["success"]("You have logged out.", "Logged out.")
   }
 
   
