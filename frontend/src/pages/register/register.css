@@ -50,3 +50,16 @@
     margin-bottom: 20px;
     
 }
+.loginButton{
+    color: white;
+    background-color: teal;
+    margin-top: 20px;
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    
+  
+}
+.loginButton:hover{
+    background-color: rgb(1, 101, 101);
+}

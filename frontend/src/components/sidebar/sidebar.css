@@ -8,7 +8,8 @@
 
 .sidebarImage {
 background-image:linear-gradient(#ffffff,
-#7dd87d);
+#9ab6ff);
+background-image: -webkit-linear-gradient(#ffffff, #9ab6ff));
 border-radius: 10px;
 margin-bottom: 15px;
 }
@@ -20,9 +21,9 @@ margin-bottom: 15px;
     
 }
 .TDA-Description{
-    background-image:linear-gradient(#ffffff,
-#caf4ca);
+    /* background-image:linear-gradient(#ffffff,
+#9ab6ff); */
     color: black;
-    padding: 0 16px;
+    padding: 16px;
     
 }

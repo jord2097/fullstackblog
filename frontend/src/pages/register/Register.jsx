@@ -1,10 +1,29 @@
 import './register.css'
 import Login from '../login/Login'
 import React, { useState } from 'react'
+import toastr from 'toastr'
+import 'toastr/build/toastr.min.css'
 
 
 export default function Register(props) {
     const [disabled, cDisabled] = useState(false)
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-center",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+      }
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -14,6 +33,7 @@ export default function Register(props) {
         .then (() => {
             cDisabled(true)
             props.renderLogin()
+            toastr["success"]("You can now login.", "Registration Successful!")
         })
         .catch(() => [
             cDisabled(false)
@@ -51,6 +71,7 @@ export default function Register(props) {
                     <input className='loginInput' name="password" type="password" placeholder='Password'/>
                     {/* <label htmlFor='confirmPassword'></label>
                     <input className='loginInput' type="password" placeholder='Confirm your password'/> */}
+                    <button className='loginButton' disabled={disabled} type="submit">Register</button>
                    
                 </form>
             </div>

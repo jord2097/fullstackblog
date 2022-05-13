@@ -41,10 +41,10 @@ export default function Login(props) {
             navigate('/')
             toastr["success"]("You are now logged in and can access your permitted features.", "Login Successfully")            
         })        
-        .catch(() => {
-            cDisabled(false)
-            // toastr/equiv
-        })
+        .catch(() => [
+            cDisabled(false),
+            toastr["error"]("Please check your details and try again.", "Login Failed.")
+        ])
     }
     
     const renderRegister = () => {
@@ -75,14 +75,16 @@ export default function Login(props) {
                         </div>
                     </form>   <br/>   
                     <br/> <hr/>  
-                    <hr/>        
+                          
                 </div>
                 <Typography className='Register'>
                         Don't have an account yet?
                         <br />
                         <Button onClick={renderRegister} variant="contained" disabled={disabled} color="primary" size="small" >Create Account</Button>
-                    </Typography>                
+                    </Typography>
+                                    
                 </div>
+                
             ) : (
                 <div>
                     <Register client={props.client} renderLogin={renderLogin}/>
