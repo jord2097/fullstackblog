@@ -96,7 +96,10 @@ exports.register = async function (req, res, next){
 }
 
 exports.login = async function (req,res,next){
-    const user = await User.findOne({username: req.body.username}).select("-password")
+    const user = await User.findOne({
+        username: req.body.username,
+        password: req.body.password
+    }).select("-password")
     console.log(user)
     if (user) {
         const token = jwt.sign({ sub: user._id, role: user.role}, config.secret)
