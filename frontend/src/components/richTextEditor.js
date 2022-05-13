@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState, convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html"
-import htmlToDraft from "html-to-draftjs"
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import './richTextEditor.css'
 

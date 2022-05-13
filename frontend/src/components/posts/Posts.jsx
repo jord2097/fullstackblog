@@ -59,6 +59,7 @@ export default function Posts(props) {
             <Post post={post} searchCat={props.searchCat} updatePost={updatePost} deletePost={deletePost} currentUser={props.currentUser} />
           </Grid>
       ))
+      
       )
     }
         
