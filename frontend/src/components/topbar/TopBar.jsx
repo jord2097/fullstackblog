@@ -50,7 +50,7 @@ export default function TopBar(props) {
         return (
           <>
           
-          <Nav.Link href="/add">Add</Nav.Link>    
+          <Nav.Link href="/#/add">Add</Nav.Link>    
           <Nav.Link variant="contained" onClick={logout}>Logout</Nav.Link>
           
           </>
@@ -65,7 +65,7 @@ export default function TopBar(props) {
       <>
         
         
-        <Nav.Link href="/login">Login/Register</Nav.Link>    
+        <Nav.Link href="/#/login">Login/Register</Nav.Link>    
         
         </>
       )
@@ -76,7 +76,7 @@ export default function TopBar(props) {
   return (
     <Navbar bg="light" expand="lg" className="navContainer">
   <Container fluid >
-    <Navbar.Brand href="/">The Developer Academy</Navbar.Brand>
+    <Navbar.Brand href="/#/">The Developer Academy</Navbar.Brand>
     <Navbar.Toggle aria-controls="navbarScroll" />
     <Navbar.Collapse id="navbarScroll">
       <Nav
@@ -84,7 +84,7 @@ export default function TopBar(props) {
         style={{ maxHeight: '100px' }}
         navbarScroll
       >
-        <Nav.Link href="/">Home</Nav.Link>              
+        <Nav.Link href="/#/">Home</Nav.Link>              
         {authorizedView()}
       </Nav>
       <Form className="d-flex" onSubmit={searchSubmit}>

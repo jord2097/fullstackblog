@@ -99,8 +99,8 @@ function App() {
         <TopBar query={query} cQuery={cQuery} search={search} currentUser={currentUser} loggedIn={loggedIn} />
         {/* <div className={classes.toolbar}></div>         */}
         <Routes>          
-          <Route path="/fullstackblog/search" element={<Search client={client} posts={posts} cPosts={cPosts} search={search} />} />
-          <Route path="/fullstackblog" element={<Home
+          <Route path="/search" element={<Search client={client} posts={posts} cPosts={cPosts} search={search} />} />
+          <Route path="/" element={<Home
           client={client}
           refreshList={refreshList}
           posts={posts}
@@ -110,11 +110,11 @@ function App() {
           cCurrent={cCurrent}          
           currentUser={currentUser}
           loggedIn={loggedIn} />} /> 
-          <Route path='/fullstackblog/add' element={<CreateNewPost client={client} refreshList={refreshList} current={current} cCurrent={cCurrent} currentUser={currentUser}/>}></Route>
-          <Route path="/fullstackblog/posts/:postId" element={<SinglePost client={client} currentUser={currentUser} current={current} cCurrent={cCurrent} refreshList={refreshList} />} />
-          <Route path="/fullstackblog/login" element={<Login client={client} loggedIn={loggedIn}/>} />
-          <Route path="/fullstackblog/category" element={<Search client={client} posts={posts} cPosts={cPosts} search={search} />} />
-          <Route path="/fullstackblog/tag" element={<Search client={client} posts={posts} cPosts={cPosts} search={search}/>} />
+          <Route path='/add' element={<CreateNewPost client={client} refreshList={refreshList} current={current} cCurrent={cCurrent} currentUser={currentUser}/>}></Route>
+          <Route path="/posts/:postId" element={<SinglePost client={client} currentUser={currentUser} current={current} cCurrent={cCurrent} refreshList={refreshList} />} />
+          <Route path="/login" element={<Login client={client} loggedIn={loggedIn}/>} />
+          <Route path="/category" element={<Search client={client} posts={posts} cPosts={cPosts} search={search} />} />
+          <Route path="/tag" element={<Search client={client} posts={posts} cPosts={cPosts} search={search}/>} />
         </Routes>
 
         
