@@ -2,7 +2,7 @@ import axios from 'axios';
 import { authHeader } from './_services/auth-header'
 import { handleResponse } from './_services/handle-response'
 import { authService } from './_services/auth-service'
-const url = 'http://localhost:3000' // URL for the API server
+const url = 'https://hdj-blog-api.herokuapp.com' // URL for the API server
 
 export class apiClient {
     constructor(clientToken) {

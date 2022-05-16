@@ -1,7 +1,7 @@
 import { BehaviorSubject } from 'rxjs';
 import { handleResponse } from './handle-response'
 const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
-const url = 'http://localhost:3000'
+const url = 'https://hdj-blog-api.herokuapp.com'
 
 export const authService = {
     login,
