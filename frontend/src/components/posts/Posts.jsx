@@ -1,6 +1,6 @@
 import Post from '../post/Post';
 import './posts.css';
-import { Grid, Button, Toolbar } from '@material-ui/core'
+import { Grid, Button, Toolbar, CircularProgress } from '@material-ui/core'
 import React, { useState } from 'react'
 import useStyles from './styles';
 import { useNavigate } from 'react-router-dom';
@@ -77,9 +77,10 @@ export default function Posts(props) {
           <br />
           <Button className="toolbarButtons" style={{ marginRight: 16 }} variant="contained" onClick={showDefault}> Default</Button>          
         </Toolbar>          
-        <Grid className={classes.container} container alignItems="stretch" spacing={3}>          
-          {renderPosts()}
-          
+        <Grid className={classes.container} container alignItems="stretch" spacing={3}>
+          {!props.posts.length ? (<CircularProgress />) : (
+            renderPosts()
+          )}        
           
         </Grid>
         </>
