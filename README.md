@@ -1,4 +1,4 @@
-# The Developer Academy Full Stack Blog Project [(Click Here for Live Demo)](https://jord2097.github.io/fullstackblog/)
+# The Developer Academy Full Stack Blog Project [(Live Demo)](https://jord2097.github.io/fullstackblog/)
 ## By Jordan, Haftu and Dan
 
 This project was completed as part of a group of 3 over 4 weeks. The aim was to create a full-stack blog web app that could be integrated into [The Developer Academy](https://thedeveloperacademy.com/)'s new concept website. The project consists of a RESTful API built with Node.js connected to MongoDB with a React frontend to render the data and UI. If you would like to see us present this there is a recording on [Youtube](https://www.youtube.com/watch?v=LNpqqtUJhWk&t=3354s).
