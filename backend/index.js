@@ -7,7 +7,7 @@ const morgan = require('morgan');
 const port = process.env.PORT || 3000
 const mongoose = require('mongoose') 
 const { v4: uuidv4 } = require('uuid') // tokens
-const uri = "mongodb+srv://jord2097:97f514dVaZWLrF0J8gqs@cluster0.thipn.mongodb.net/blog-data?retryWrites=true&w=majority" // MongoDB uri
+const uri = "" // MongoDB uri
 const { User } = require('./models/users.js')
 const errorHandler = require('./errorHandler')
 
